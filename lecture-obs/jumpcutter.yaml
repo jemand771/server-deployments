@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jumpcutter
+  labels:
+    app: jumpcutter
+spec:
+  selector:
+    matchLabels:
+      app: jumpcutter
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jumpcutter
+    spec:
+      containers:
+        - name: obs
+          image: ghcr.io/jemand771/bagc-jumpcutter:sha-29a1f54
+          ports:
+            - containerPort: 80
+          env:
+            - name: NEXTCLOUD_URL
+              valueFrom:
+                secretKeyRef:
+                  name: jumpcutter-secret
+                  key: nextcloud_url
+            - name: NEXTCLOUD_FOLDER
+              value: "5. Semester/Vorlesungen"
+            - name: NEXTCLOUD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: jumpcutter-secret
+                  key: nextcloud_username
+            - name: NEXTCLOUD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jumpcutter-secret
+                  key: nextcloud_password
+            - name: COURSE_NAMES
+              value: "TI-DVS (Kaiser), TI-DIS (Sporer), TI-BWPM (Nehrig)"
+            - name: DISCORD_WEBHOOK
+              valueFrom:
+                secretKeyRef:
+                  name: jumpcutter-secret
+                  key: discord_webhook
+          volumeMounts:
+            - name: input
+              mountPath: "/app/input"
+          resources:
+            limits:
+              cpu: 2000m
+      volumes:
+        - name: input
+          persistentVolumeClaim:
+            claimName: obs-video
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jumpcutter
+spec:
+  ports:
+    - name: http
+      port: 80
+  selector:
+    app: jumpcutter
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: jumpcutter
+spec:
+  rules:
+    - host: jumpcutter.771.blue
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jumpcutter
+                port:
+                  number: 80
