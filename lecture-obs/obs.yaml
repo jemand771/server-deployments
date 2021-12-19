@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obs
+  labels:
+    app: obs
+spec:
+  selector:
+    matchLabels:
+      app: obs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: obs
+    spec:
+      containers:
+        - name: obs
+          image: ghcr.io/jemand771/docker-obs:sha-709da8b
+          ports:
+            - containerPort: 5901
+          env:
+            - name: VNC_PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: obs-secret
+                  key: vnc_password
+          volumeMounts:
+            - name: config
+              mountPath: "/root"
+            - name: video
+              mountPath: "/home"
+            - name: dshm
+              mountPath: /dev/shm
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: obs-config
+        - name: video
+          persistentVolumeClaim:
+            claimName: obs-video
+        - name: dshm
+          emptyDir:
+            medium: Memory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: obs
+spec:
+  ports:
+    - name: http
+      port: 5901
+  selector:
+    app: obs
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: obs
+spec:
+  rules:
+    - host: obs.771.blue
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: obs
+                port:
+                  number: 5901
