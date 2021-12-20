@@ -1,3 +1,7 @@
 # I use these file types for unsealed secrets - immediately change all affected passwords if these are ever exposed!
 *.yamls
 *.jsons
+
+# projects that failed - please don't talk about it
+# I'm keeping the yaml files in case I ever wanna try again
+/pterodactyl
