@@ -1,3 +1,5 @@
+.idea
+
 # I use these file types for unsealed secrets - immediately change all affected passwords if these are ever exposed!
 *.yamls
 *.jsons
