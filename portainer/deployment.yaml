@@ -59,3 +59,4 @@ spec:
               scheme: HTTPS
           resources:
             {}
+# NOTE: I've gone ahead and deployed the (non-edge) agent via docker and connected it into this portainer instance
