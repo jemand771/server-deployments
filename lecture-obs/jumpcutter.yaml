@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: obs
-          image: ghcr.io/jemand771/bagc-jumpcutter:sha-29a1f54
+          image: ghcr.io/jemand771/bagc-jumpcutter:sha-d84433c
           ports:
             - containerPort: 80
           env:
