@@ -2,6 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: portainer
+  namespace: portainer
   labels:
     app.kubernetes.io/name: portainer
     app.kubernetes.io/instance: portainer
@@ -13,3 +14,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: portainer-sa-clusteradmin
+  namespace: portainer

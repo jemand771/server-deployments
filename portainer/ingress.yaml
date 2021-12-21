@@ -2,6 +2,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: portainer
+  namespace: portainer
 spec:
   rules:
     - host: portainer.771.blue

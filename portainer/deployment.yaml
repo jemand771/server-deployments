@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portainer
+  namespace: portainer
   labels:
     io.portainer.kubernetes.application.stack: portainer
     app.kubernetes.io/name: portainer
