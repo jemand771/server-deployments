@@ -38,7 +38,11 @@ spec:
                   name: jumpcutter-secret
                   key: nextcloud_password
             - name: COURSE_NAMES
-              value: "TI-DVS (Kaiser), TI-DIS (Sporer), TI-BWPM (Nehrig)"
+              value: |
+                TI-DVS (Kaiser),
+                TI-DIS (Sporer),
+                TI-BWPM (Nehrig),
+                TI-BWPM (Weiß)
             - name: DISCORD_WEBHOOK
               valueFrom:
                 secretKeyRef:
