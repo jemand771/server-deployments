@@ -42,7 +42,8 @@ spec:
                 TI-DVS (Kaiser),
                 TI-DIS (Sporer),
                 TI-BWPM (Nehrig),
-                TI-BWPM (Weiß)
+                TI-BWPM (Weiß),
+                TI-ÜT (Borchert)
             - name: DISCORD_WEBHOOK
               valueFrom:
                 secretKeyRef:
