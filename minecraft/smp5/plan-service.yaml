@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smp5-plan
+spec:
+  ports:
+    - port: 8804
+      name: plan
+  selector:
+    app: smp5
