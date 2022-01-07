@@ -15,7 +15,7 @@ spec:
         app: jumpcutter
     spec:
       containers:
-        - name: obs
+        - name: jumpcutter
           image: ghcr.io/jemand771/bagc-jumpcutter:sha-d84433c
           ports:
             - containerPort: 80
