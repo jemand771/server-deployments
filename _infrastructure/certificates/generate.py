@@ -50,6 +50,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dummy-traefik-cert-loader
+  namespace: default
 spec:
   rules:
 """ + "\n".join(
