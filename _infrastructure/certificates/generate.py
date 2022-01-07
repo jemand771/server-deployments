@@ -2,6 +2,9 @@ import yaml
 
 
 # pip install pyyaml
+NOTICE_FILE_GENERATED = """# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
+# instead of editing this one, either edit the base yaml or certificate config.
+"""
 
 
 def main():
@@ -13,10 +16,10 @@ def main():
             output_path = f"generated/{data.get('name')}-{file_name}.yaml"
             with open(input_path) as original_file:
                 with open(output_path, "w") as out_file:
-                    out_file.write(original_file.read().format(**data))
+                    out_file.write(NOTICE_FILE_GENERATED + original_file.read().format(**data))
     with open("base/dummy-loader-deploy.yaml") as f_deploy:
         with open("generated/dummy-traefik-cert-loader.yaml", "w") as f:
-            f.write(f_deploy.read() + build_ingress(certs_data))
+            f.write(NOTICE_FILE_GENERATED + f_deploy.read() + build_ingress(certs_data))
 
 
 def make_cert_data(cert):

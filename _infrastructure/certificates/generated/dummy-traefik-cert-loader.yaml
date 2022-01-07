@@ -1,3 +1,5 @@
+# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
+# instead of editing this one, either edit the base yaml or certificate config.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
