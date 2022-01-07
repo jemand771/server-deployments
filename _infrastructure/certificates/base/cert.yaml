@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: cert-key-{name}
   issuerRef:
-    name: lets-encrypt
+    name: lets-encrypt-{name}
     kind: ClusterIssuer
   dnsNames:
     - {zone}

@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: cert-key-771-red
   issuerRef:
-    name: lets-encrypt
+    name: lets-encrypt-771-red
     kind: ClusterIssuer
   dnsNames:
     - 771.red
