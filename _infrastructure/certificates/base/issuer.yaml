@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: lets-encrypt-{name}
+  namespace: cert-manager
+spec:
+  acme:
+    server: "https://acme-staging-v02.api.letsencrypt.org/directory"
+    email: jemand771@gmx.net
+    privateKeySecretRef:
+      name: lets-encrypt-key-{name}
+    solvers:
+      - dns01:
+          webhook:
+            groupName: acme.jemand771.net
+            solverName: hetzner
+            config:
+              secretName: hetzner-secret
+              zoneName: {zone}
+              apiUrl: https://dns.hetzner.com/api/v1

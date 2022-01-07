@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "jemand771-net"
+spec:
+  secretName: cert-key-jemand771-net
+  issuerRef:
+    name: lets-encrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - jemand771.net
+    - "*.jemand771.net"

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "771-red"
+spec:
+  secretName: cert-key-771-red
+  issuerRef:
+    name: lets-encrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - 771.red
+    - "*.771.red"
