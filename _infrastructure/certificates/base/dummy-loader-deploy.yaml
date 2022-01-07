@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-traefik-cert-loader
+  labels:
+    app: dummy-traefik-cert-loader
+spec:
+  template:
+    metadata:
+      name: dummy-traefik-cert-loader
+      labels:
+        app: dummy-traefik-cert-loader
+    spec:
+      containers:
+        - name: dummy-traefik-cert-loader
+          image: containous/whoami
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      app: dummy-traefik-cert-loader
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-traefik-cert-loader
+spec:
+  selector:
+    app: dummy-traefik-cert-loader
+  ports:
+    - port: 80
