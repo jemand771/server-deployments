@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  # language=yaml
+  valuesContent: |
+    # HTTPS go brrrr
+    additionalArguments:
+      # https://github.com/traefik/traefik-helm-chart/issues/173
+      - "--entryPoints.web.http.redirections.entryPoint.to=:443"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
