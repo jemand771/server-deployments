@@ -6,5 +6,5 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: nfs-test # name can be anything
 parameters:
-  archiveOnDelete: "true"
-reclaimPolicy: Delete
+  archiveOnDelete: "false"
+reclaimPolicy: Retain
