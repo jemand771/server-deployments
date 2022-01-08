@@ -42,24 +42,24 @@ spec:
     port: 8080
     nodePort: 25580
   selector:
-    run: mc-router
+    app: mc-router
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: mc-router
+    app: mc-router
   name: mc-router
 spec:
   selector:
     matchLabels:
-      run: mc-router
+      app: mc-router
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        run: mc-router
+        app: mc-router
     spec:
       serviceAccountName: mc-router
       containers:
