@@ -82,7 +82,7 @@ spec:
             - name: REMOVE_OLD_MODS
               value: "true"
             - name: STOP_SERVER_ANNOUNCE_DELAY
-              value: "10"
+              value: "30"
             - name: VANILLATWEAKS_FILE
               value: /data/vanillatweaks.json
             - name: SPAWN_PROTECTION
