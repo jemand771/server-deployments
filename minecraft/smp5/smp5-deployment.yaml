@@ -36,7 +36,7 @@ spec:
             - name: VERSION
               value: "1.18.1"
             - name: MEMORY
-              value: 8G
+              value: 12G
             - name: OVERRIDE_SERVER_PROPERTIES
               value: "true"
             - name: WHITELIST
@@ -118,10 +118,10 @@ spec:
           resources:
             requests:
               cpu: 1000m
-              memory: 8G
+              memory: 12G
             limits:
               cpu: 2000m
-              memory: 8G
+              memory: 14G
       volumes:
         - name: data
           persistentVolumeClaim:
