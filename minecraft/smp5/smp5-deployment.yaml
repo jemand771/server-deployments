@@ -42,6 +42,9 @@ spec:
             - name: WHITELIST
               value: |
                 jemand771
+                AlterJani
+                Sunny_Speziell
+                Pingutoni
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
