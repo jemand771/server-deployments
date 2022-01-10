@@ -85,6 +85,8 @@ spec:
               value: "10"
             - name: VANILLATWEAKS_FILE
               value: /data/vanillatweaks.json
+            - name: SPAWN_PROTECTION
+              value: "0"
           ports:
             - containerPort: 25565
               name: mc
