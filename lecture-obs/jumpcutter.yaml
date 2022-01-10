@@ -43,7 +43,8 @@ spec:
                 TI-DIS (Sporer),
                 TI-BWPM (Nehrig),
                 TI-BWPM (Weiß),
-                TI-ÜT (Borchert)
+                TI-ÜT (Borchert),
+                TI-DVS (Sporer)
             - name: DISCORD_WEBHOOK
               valueFrom:
                 secretKeyRef:
