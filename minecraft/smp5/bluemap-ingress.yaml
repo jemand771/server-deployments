@@ -4,7 +4,7 @@ metadata:
   name: smp5-bluemap
 spec:
   rules:
-    - host: smp5.771.blue
+    - host: smp.771.blue
       http:
         paths:
           - path: /
