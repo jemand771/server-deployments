@@ -45,6 +45,7 @@ spec:
                 AlterJani
                 Sunny_Speziell
                 Pingutoni
+                SKO88
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
