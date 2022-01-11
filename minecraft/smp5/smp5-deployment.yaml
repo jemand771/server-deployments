@@ -46,6 +46,7 @@ spec:
                 Sunny_Speziell
                 Pingutoni
                 SKO88
+                Meedeo
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
