@@ -120,10 +120,10 @@ spec:
               subPath: vanillatweaks
           resources:
             requests:
-              cpu: 1000m
+              cpu: 1500m
               memory: 12G
             limits:
-              cpu: 2000m
+              cpu: 3000m
               memory: 14G
       volumes:
         - name: data
