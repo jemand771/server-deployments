@@ -4,6 +4,7 @@ metadata:
   name: traefik
   namespace: kube-system
 spec:
+  # list of supported config entries: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   # language=yaml
   valuesContent: |
     # HTTPS go brrrr
