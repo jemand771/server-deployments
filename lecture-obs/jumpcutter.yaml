@@ -55,7 +55,9 @@ spec:
               mountPath: "/app/input"
           resources:
             limits:
-              cpu: 2000m
+              cpu: 4000m
+            requests:
+              cpu: 500m
       volumes:
         - name: input
           persistentVolumeClaim:
