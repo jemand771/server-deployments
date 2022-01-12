@@ -47,6 +47,7 @@ spec:
                 Pingutoni
                 SKO88
                 Meedeo
+                1blockster2
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
