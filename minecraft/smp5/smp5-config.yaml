@@ -200,7 +200,8 @@ data:
           "unlock all recipes",
           "track statistics",
           "track raw statistics",
-          "workstation highlights"
+          "workstation highlights",
+          "armor statues"
         ],
         "utilities": [
           "custom villager shops",
