@@ -84,7 +84,8 @@ spec:
                 https://media.forgecdn.net/files/3573/712/fabric-language-kotlin-1.7.1%2Bkotlin.1.6.10.jar,
                 https://cdn.modrinth.com/data/p1ewR5kV/versions/0.3.4/unifiedmetrics-platform-fabric-0.3.4.jar,
                 https://media.forgecdn.net/files/3541/799/ledger-1.2.0.jar,
-                https://media.forgecdn.net/files/3585/804/beenfo-1.18.1-fabric0.45.0-1.3.3.jar
+                https://media.forgecdn.net/files/3585/804/beenfo-1.18.1-fabric0.45.0-1.3.3.jar,
+                https://media.forgecdn.net/files/3545/767/LuckPerms-Fabric-5.3.86.jar
             - name: REMOVE_OLD_MODS
               value: "true"
             - name: STOP_SERVER_ANNOUNCE_DELAY
