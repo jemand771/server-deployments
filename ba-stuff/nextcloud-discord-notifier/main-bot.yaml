@@ -8,6 +8,10 @@ spec:
       app: nextcloud-discord-notifier
       bot: main
   template:
+    metadata:
+      labels:
+        app: nextcloud-discord-notifier
+        bot: main
     spec:
       containers:
         - name: nextcloud-discord-notifier-main
