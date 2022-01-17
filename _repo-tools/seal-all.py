@@ -10,6 +10,7 @@ def main():
                 continue
             print(f"sealing {file} -> {new_file}")
             os.system(f"D:/software/kubeseal/kubeseal -o {ext} <{file} >{new_file}")
+            os.system(f"git add {new_file} >nul 2>&1")
 
 
 if __name__ == '__main__':
