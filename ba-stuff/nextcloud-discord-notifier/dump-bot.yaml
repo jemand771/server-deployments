@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud-discord-notifier-dump
+spec:
+  selector:
+    matchLabels:
+      app: nextcloud-discord-notifier
+      bot: dump
+  template:
+    metadata:
+      labels:
+        app: nextcloud-discord-notifier
+        bot: dump
+    spec:
+      containers:
+        - name: nextcloud-discord-notifier-dump
+          # TODO this doesn't have versions yet mmlol
+          image: ghcr.io/jemand771/nextcloud-discord-notifier:sha-0f256ba
+          envFrom:
+            - secretRef:
+                name: nextcloud-discord-notifier-dump-config
+          env:
+            - name: FETCH_LIMIT
+              value: "20"
+            - name: SLEEP_TIME
+              value: "30"
