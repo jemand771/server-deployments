@@ -1,4 +1,5 @@
 - name: jemand771.net
 - name: 771.red
 - name: 771.blue
-- name: tunnel.771.blue
+  dns_names:
+    - "*.tunnel.771.blue"
