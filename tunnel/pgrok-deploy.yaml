@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgrok
+  namespace: tunnel
+spec:
+  selector:
+    matchLabels:
+      app: pgrok
+  template:
+    metadata:
+      labels:
+        app: pgrok
+    spec:
+      containers:
+        - name: pgrok
+          image: jerson/pgrok
+          args:
+            - pgrokd
+            - -domain
+            - tunnel.771.blue
+            - -httpAddr
+            - :80
+            - -httpsAddr
+            - ""
+            - -tunnelTLSClientCA
+            - "/mnt/pgrok.ca"
+          ports:
+          - containerPort: 4443
+            name: tunnel
+          - containerPort: 80
+            name: http
+          volumeMounts:
+            - mountPath: /mnt/pgrok.ca
+              name: ca
+              subPath: ca
+      volumes:
+        - name: ca
+          configMap:
+            name: pgrok

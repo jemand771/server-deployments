@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pgrok
+  namespace: tunnel
+spec:
+  rules:
+    - host: "*.tunnel.771.blue"
+      http:
+        paths:
+          - backend:
+              service:
+                name: pgrok-http
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
