@@ -1,0 +1,95 @@
+# yes, I know there's a minio operator that allows you to spin up whole minio pools with ease.
+# but since that's even more overkill (at least for me) than a single-host single-disk install over 4 instances,
+# I'm going with this.
+# (look mom, no files)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+  labels:
+    app: minio
+  namespace: minio
+spec:
+  ports:
+  - port: 9000
+    name: minio
+  - port: 8090
+    name: console
+  selector:
+    app: minio
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  serviceName: minio
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: quay.io/minio/minio
+          args:
+            - server
+            - --console-address
+            - :8090
+            - http://minio-0.minio.minio.svc.cluster.local/data
+            - http://minio-1.minio.minio.svc.cluster.local/data
+            - http://minio-2.minio.minio.svc.cluster.local/data
+            - http://minio-3.minio.minio.svc.cluster.local/data
+          env:
+            - name: MINIO_PROMETHEUS_URL
+              value: http://prometheus.default.svc.cluster.local:9090
+            - name: MINIO_BROWSER_REDIRECT_URL
+              value: https://minio.jemand771.net
+          envFrom:
+            - secretRef:
+                name: minio-secret
+          ports:
+            - containerPort: 9000
+              name: minio
+            - containerPort: 8090
+              name: console
+          livenessProbe:
+            httpGet:
+              path: /minio/health/live
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /minio/health/ready
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 15
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: nfs
+        resources:
+          requests:
+            storage: 10Gi

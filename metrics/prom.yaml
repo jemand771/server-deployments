@@ -29,6 +29,9 @@ spec:
               subPath: prometheus-yaml
             - mountPath: /prometheus
               name: data
+            - mountPath: /var/run/secrets/minio-token
+              name: secrets
+              subPath: minio-token
       volumes:
         - name: config
           configMap:
@@ -36,6 +39,9 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: prometheus-data
+        - name: secrets
+          secret:
+            secretName: prometheus-secrets
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -49,6 +55,13 @@ data:
       scrape_timeout: 5s
       evaluation_interval: 15s
     scrape_configs:
+      - job_name: minio-job
+        metrics_path: /minio/v2/metrics/cluster
+        scheme: http
+        authorization:
+          credentials_file: /var/run/secrets/minio-token 
+        static_configs:
+        - targets: [minio.minio.svc.cluster.local:9000]
       - job_name: "kubernetes-pods"
         kubernetes_sd_configs:
           - role: pod
