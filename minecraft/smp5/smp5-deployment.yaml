@@ -49,6 +49,7 @@ spec:
                 Meedeo
                 1blockster2
                 skarletton
+                Hallo_XD
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
