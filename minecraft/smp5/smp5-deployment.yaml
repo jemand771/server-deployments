@@ -50,6 +50,7 @@ spec:
                 1blockster2
                 skarletton
                 Hallo_XD
+                wild_moon_raven
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
