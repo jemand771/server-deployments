@@ -18,7 +18,7 @@ spec:
       containers:
         - name: nextcloud-discord-notifier-dump
           # TODO this doesn't have versions yet mmlol
-          image: ghcr.io/jemand771/nextcloud-discord-notifier:1.0.2
+          image: ghcr.io/jemand771/nextcloud-discord-notifier:1.0.3
           envFrom:
             - secretRef:
                 name: nextcloud-discord-notifier-dump-config
