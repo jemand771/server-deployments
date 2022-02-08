@@ -83,6 +83,9 @@ spec:
             timeoutSeconds: 10
             successThreshold: 1
             failureThreshold: 3
+          volumeMounts:
+          - name: data
+            mountPath: /data
   volumeClaimTemplates:
     - metadata:
         name: data
