@@ -1,5 +1,6 @@
-import yaml
+import os
 
+import yaml
 
 # pip install pyyaml
 NOTICE_FILE_GENERATED = """# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
@@ -17,9 +18,12 @@ def main():
             with open(input_path) as original_file:
                 with open(output_path, "w") as out_file:
                     out_file.write(NOTICE_FILE_GENERATED + original_file.read().format(**data))
+            os.system(f"git add \"{output_path}\" >nul 2>&1")
     with open("base/dummy-loader-deploy.yaml") as f_deploy:
-        with open("generated/dummy-traefik-cert-loader.yaml", "w") as f:
+        dummy_cert_loader_path = "generated/dummy-traefik-cert-loader.yaml"
+        with open(dummy_cert_loader_path, "w") as f:
             f.write(NOTICE_FILE_GENERATED + f_deploy.read() + build_ingress(certs_data))
+        os.system(f"git add \"{dummy_cert_loader_path}\" >nul 2>&1")
 
 
 def make_cert_data(cert):
