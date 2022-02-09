@@ -72,7 +72,18 @@ spec:
                 name: dummy-traefik-cert-loader
                 port:
                   number: 80
+    - host: whoami.no-bitch.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dummy-traefik-cert-loader
+                port:
+                  number: 80
   tls:
     - secretName: cert-key-jemand771-net
     - secretName: cert-key-771-red
     - secretName: cert-key-771-blue
+    - secretName: cert-key-no-bitch-es

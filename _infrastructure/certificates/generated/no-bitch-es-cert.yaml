@@ -1,0 +1,15 @@
+# THIS FILE HAS BEEN AUTOMATICALLY GENERATED.
+# instead of editing this one, either edit the base yaml or certificate config.
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "no-bitch-es"
+  namespace: default
+spec:
+  secretName: cert-key-no-bitch-es
+  issuerRef:
+    name: lets-encrypt-no-bitch-es
+    kind: ClusterIssuer
+  dnsNames:
+    - no-bitch.es
+    - "*.no-bitch.es"
