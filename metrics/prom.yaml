@@ -83,6 +83,14 @@ data:
             action: replace
             target_label: __scheme__
             regex: (.+)
+          - action: labelmap
+            regex: __meta_kubernetes_pod_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: pod
       - job_name: "kubernetes-nodes"
         scheme: https
         tls_config:
