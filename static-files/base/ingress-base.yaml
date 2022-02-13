@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {name}
+  namespace: static-files
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: static-files-{name}@kubernetescrd
+spec:
+  rules:
+    - host: {host}
+      http:
+        paths:
+          - backend:
+              service:
+                name: static-nginx
+                port:
+                  name: web
+            pathType: Exact
+            path: {path}
