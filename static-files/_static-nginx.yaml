@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: static-nginx
-          image: ghcr.io/jemand771/static-files:1.0.0
+          image: ghcr.io/jemand771/static-files:1.0.1
           ports:
             - containerPort: 80
               name: web
