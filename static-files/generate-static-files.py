@@ -8,11 +8,15 @@ def main():
     with open("config.yaml") as f:
         config = yaml.safe_load(f)
     for entry in config:
-        host, path = f"{entry['url']}/".split("/", 1)
-        name_base = name_sanitize(host)
-        if path:
-            name_base += f"-{name_sanitize(path)}"
-        path = path or "/"
+        spl = f"{entry['url']}".split("/", 1)
+        if len(spl) == 1:
+            host, = spl
+            path = "/"
+            name_base = name_sanitize(host)
+        else:
+            host, path = spl
+            name_base = name_sanitize(host) + "-" + name_sanitize(path)
+            path = f"/{path}"
         with open(output_path := f"generated/{name_base}-ingress.yaml", "w") as f:
             f.write(make_ingress(host, path, name_base))
         os.system(f"git add \"{output_path}\" >nul 2>&1")
