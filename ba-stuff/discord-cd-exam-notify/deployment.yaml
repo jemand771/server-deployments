@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discord-cd-exam-notify
+spec:
+  selector:
+    matchLabels:
+      app: discord-cd-exam-notify
+  template:
+    metadata:
+      labels:
+        app: discord-cd-exam-notify
+    spec:
+      containers:
+        - name: discord-cd-exam-notify
+          image: ghcr.io/jemand771/discord-cd-exam-notify:1.0.0
+          envFrom:
+            - secretRef:
+                name: discord-cd-exam-notify
+          env:
+            # this is required for logs to work properly
+            - name: PYTHONUNBUFFERED
+              value: "1"
