@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: misc-metric-collector
+spec:
+  selector:
+    matchLabels:
+      app: misc-metric-collector
+  template:
+    metadata:
+      labels:
+        app: misc-metric-collector
+      annotations:
+        prometheus.io/scrape_5m: 'true'
+        prometheus.io/path: "/"
+        prometheus.io/port: '80'
+    spec:
+      containers:
+        - name: misc-metric-collector
+          image: ghcr.io/jemand771/misc-metric-collector:sha-37e7e5c
+          envFrom:
+            - secretRef:
+                name: tankerk-secret
+          env:
+            - name: TANKERK_ID_LIST
+              value: |
+                56dadafd-828f-4e1d-9008-1bfe0d85b5ad
+                edf93300-d909-45fb-8af3-9c32346a6127
