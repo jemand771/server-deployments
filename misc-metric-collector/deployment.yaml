@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: misc-metric-collector
-          image: ghcr.io/jemand771/misc-metric-collector:sha-37e7e5c
+          image: ghcr.io/jemand771/misc-metric-collector:1.1.0
           envFrom:
             - secretRef:
                 name: tankerk-secret
