@@ -23,6 +23,9 @@ spec:
                 name: tankerk-secret
           env:
             - name: TANKERK_ID_LIST
+              # shell, gero, jet (neefestr), globus
               value: |
                 56dadafd-828f-4e1d-9008-1bfe0d85b5ad
                 edf93300-d909-45fb-8af3-9c32346a6127
+                51d4b53f-a095-1aa0-e100-80009459e03a
+                a1978958-a6c4-447b-a90c-3d189da0f831
