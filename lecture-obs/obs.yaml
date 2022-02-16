@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: obs
-          image: ghcr.io/jemand771/docker-obs:sha-709da8b
+          image: ghcr.io/jemand771/docker-obs:sha-db664a2
           ports:
             - containerPort: 5901
           env:
