@@ -7,8 +7,6 @@ spec:
   # list of supported config entries: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   # language=yaml
   valuesContent: |
-    # HTTPS go brrrr
-    additionalArguments:
-      # https://github.com/traefik/traefik-helm-chart/issues/173
-      - "--entryPoints.web.http.redirections.entryPoint.to=:443"
-      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
+    ports:
+      web:
+        redirectTo: websecure
