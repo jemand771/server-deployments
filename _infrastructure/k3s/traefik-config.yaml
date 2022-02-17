@@ -10,3 +10,6 @@ spec:
     ports:
       web:
         redirectTo: websecure
+    providers:
+      kubernetesIngress:
+        allowExternalNameServices: true
