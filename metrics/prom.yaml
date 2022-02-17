@@ -23,6 +23,8 @@ spec:
           ports:
             - containerPort: 9090
               name: web
+          args:
+            - "--storage.tsdb.retention.time=1y"
           volumeMounts:
             - mountPath: /etc/prometheus/prometheus.yml
               name: config
