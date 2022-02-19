@@ -295,7 +295,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus
-    namespace: default
+    namespace: metrics
 ---
 apiVersion: v1
 kind: ServiceAccount
