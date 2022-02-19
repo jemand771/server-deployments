@@ -1,0 +1,33 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  targetNamespace: authentik
+  chart: authentik
+  repo: https://charts.goauthentik.io
+  version: 5.2.1
+  # NOTE some values in here are secrets set by a HelmChartConfig that isn't checked into the repo
+  # language=yaml
+  valuesContent: |
+    authentik:
+      secret_key: "dummy"
+      error_erporting:
+        enabled: true
+      postgresql:
+        password: "dummy"
+    ingress:
+      enabled: true
+      hosts:
+        - host: sso.jemand771.net
+          paths:
+            - path: "/"
+              pathType: Prefix
+    postgresql:
+      enabled: true
+      postgresqlPassword: "dummy"
+    redis:
+      enabled: true
+    env:
+      AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: "false"
