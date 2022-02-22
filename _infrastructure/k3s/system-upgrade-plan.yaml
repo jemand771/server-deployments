@@ -15,7 +15,7 @@ spec:
   serviceAccountName: system-upgrade
   upgrade:
     image: rancher/k3s-upgrade
-  version: v1.22.5+k3s1
+  version: v1.22.6+k3s1
 # I'm upgrading all nodes using one plan instead of the suggested master/worker split.
 # This might be suboptimal *if* I ever add worker nodes, which I probably won't.
 # docs: https://rancher.com/docs/k3s/latest/en/upgrades/automated/
