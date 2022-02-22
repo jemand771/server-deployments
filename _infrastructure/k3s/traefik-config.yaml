@@ -13,3 +13,9 @@ spec:
     providers:
       kubernetesIngress:
         allowExternalNameServices: true
+      kubernetesCRD:
+        allowCrossNamespace: true
+        allowExternalNameServices: true
+    logs:
+      general:
+        level: INFO
