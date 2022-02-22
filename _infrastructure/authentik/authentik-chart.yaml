@@ -19,6 +19,8 @@ spec:
         password: "dummy"
     ingress:
       enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-ratelimit@kubernetescrd
       hosts:
         - host: sso.jemand771.net
           paths:
