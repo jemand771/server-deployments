@@ -40,7 +40,6 @@ metadata:
   namespace: authentik
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
-    traefik.ingress.kubernetes.io/router.priority: "10"
 spec:
   rules:
     - host: auth-test.771.blue
@@ -53,36 +52,3 @@ spec:
                   name: web
             pathType: Prefix
             path: /
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: auth-test-akprox
-  namespace: authentik
-  annotations:
-    traefik.ingress.kubernetes.io/router.priority: "50"
-spec:
-  rules:
-    - host: auth-test.771.blue
-      http:
-        paths:
-          - backend:
-              service:
-                name: akprox
-                port:
-                  name: web
-            pathType: Prefix
-            path: /akprox/
----
-# NOTE this isn't technically needed as it's in the same namespace as authentik. leaving it here for reference
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: authentik
-  name: akprox
-spec:
-  type: ExternalName
-  externalName: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local
-  ports:
-    - port: 9000
-      name: web
