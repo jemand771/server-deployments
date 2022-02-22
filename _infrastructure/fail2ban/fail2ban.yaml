@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fail2ban
+  namespace: fail2ban
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app: fail2ban
+  template:
+    metadata:
+      labels:
+        app: fail2ban
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9191'
+    spec:
+      hostNetwork: true
+      containers:
+        - name: fail2ban
+          image: ghcr.io/crazy-max/fail2ban:0.11.2
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
+          env:
+            - name: TZ
+              value: Europe/Berlin
+          volumeMounts:
+            - mountPath: /var/log
+              name: host-log
+            - mountPath: /data/jail.d
+              name: jails
+            - mountPath: /var/run/fail2ban
+              name: run
+        - name: exporter
+          image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:0.6.0
+          ports:
+            - containerPort: 9191
+          volumeMounts:
+            - mountPath: /var/run/fail2ban
+              name: run
+              readOnly: true
+      volumes:
+        - name: jails
+          configMap:
+            name: fail2ban-jails
+        - name: host-log
+          hostPath:
+            path: /var/log
+        - name: run
+          emptyDir: {}
