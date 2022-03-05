@@ -1,0 +1,40 @@
+# NOTE this chart is... unstable at best.
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: sentry
+  namespace: sentry
+spec:
+  targetNamespace: sentry
+  chart: sentry
+  repo: https://sentry-kubernetes.github.io/charts
+  version: 13.0.1
+  # language=yaml
+  valuesContent: |
+    ingress:
+      enabled: true
+      regexPathStyle: traefik
+      hostname: sentry.jemand771.net
+    user:
+      create: false
+    # this needs to be true on first install
+    # asHook: false
+    sentry:
+      worker:
+        replicas: 1
+      web:
+        resources:
+          limits:
+            cpu: 1000m
+    kafka:
+      extraEnvVars:
+        - name: KAFKA_OFFSETS_TOPIC_NUM_PARTITIONS
+          value: "2"
+    mail:
+      backend: smtp
+      username: sentry@jemand771.net
+      from: sentry@jemand771.net
+      host: mailu-front.mailu.svc.cluster.local
+      port: 587
+      useTls: true
+      useSsl: false
