@@ -1,0 +1,29 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: mailu
+  namespace: mailu
+spec:
+  targetNamespace: mailu
+  chart: mailu
+  repo: https://mailu.github.io/helm-charts/
+  version: 0.3.1
+  # language=yaml
+  valuesContent: |
+    domain: jemand771.net
+    hostnames:
+      - jemand771.net
+    front:
+      controller:
+        kind: DaemonSet
+    certmanager:
+      enabled: false
+    mailuVersion: 1.9.20
+    rspamd:
+      startupProbe:
+        failureThreshold: 180
+      resources:
+        limits:
+          memory: 1G
+    persistence:
+      size: 10Gi
