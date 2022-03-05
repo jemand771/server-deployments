@@ -1,0 +1,10 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: kube-state-metrics
+  namespace: metrics
+spec:
+  targetNamespace: metrics
+  chart: kube-state-metrics
+  repo: https://prometheus-community.github.io/helm-charts
+  version: 4.7.0

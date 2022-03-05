@@ -1,0 +1,10 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: node-exporter
+  namespace: metrics
+spec:
+  targetNamespace: metrics
+  chart: prometheus-node-exporter
+  repo: https://prometheus-community.github.io/helm-charts
+  version: 3.0.1
