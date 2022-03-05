@@ -19,3 +19,9 @@ spec:
     logs:
       general:
         level: INFO
+    metrics:
+      prometheus:
+        # only router labels are false by default
+        addEntryPointsLabels: true
+        addRoutersLabels: true
+        addServicesLabels: true
