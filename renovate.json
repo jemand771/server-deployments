@@ -4,7 +4,12 @@
   ],
   "kubernetes": {
     "fileMatch": [
-      "^ba-stuff/"
+      "^ba-stuff/",
+      "^lecture-obs/",
+      "^minecraft/",
+      "^misc-metric-collector/",
+      "^static-files/",
+      "^tunnel/"
     ]
   }
 }
