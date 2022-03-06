@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "kubernetes": {
+    "fileMatch": [
+      "^ba-stuff/",
+      "^lecture-obs/",
+      "^minecraft/",
+      "^misc-metric-collector/",
+      "^static-files/",
+      "^tunnel/"
+    ]
+  }
+}
