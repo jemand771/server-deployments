@@ -1,0 +1,22 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: portainer
+  namespace: portainer
+spec:
+  targetNamespace: portainer
+  chart: portainer
+  repo: https://portainer.github.io/k8s/
+  version: 1.0.22
+  # language=yaml
+  valuesContent: |
+    service:
+      type: ClusterIP
+    persistence:
+      size: 100Mi
+    ingress:
+      enabled: true
+      hosts:
+        - host: portainer.jemand771.net
+          paths:
+            - path: /
