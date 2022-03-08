@@ -33,3 +33,4 @@ spec:
       enabled: true
     env:
       AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: "false"
+      AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: "false"
