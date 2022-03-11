@@ -12,13 +12,12 @@ def main():
     with open("cert_config.yaml") as f:
         certs_data = [make_cert_data(cert) for cert in yaml.safe_load(f)]
     for data in certs_data:
-        for file_name in ("cert", "issuer"):
-            input_path = f"base/{file_name}.yaml"
-            output_path = f"generated/{data.get('name')}-{file_name}.yaml"
-            with open(input_path) as original_file:
-                with open(output_path, "w") as out_file:
-                    out_file.write(NOTICE_FILE_GENERATED + original_file.read().format(**data))
-            os.system(f"git add \"{output_path}\" >nul 2>&1")
+        input_path = f"base/cert.yaml"
+        output_path = f"generated/cert-{data.get('name')}.yaml"
+        with open(input_path) as original_file:
+            with open(output_path, "w") as out_file:
+                out_file.write(NOTICE_FILE_GENERATED + original_file.read().format(**data))
+        os.system(f"git add \"{output_path}\" >nul 2>&1")
     with open("base/dummy-loader-deploy.yaml") as f_deploy:
         dummy_cert_loader_path = "generated/dummy-traefik-cert-loader.yaml"
         with open(dummy_cert_loader_path, "w") as f:
@@ -54,7 +53,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dummy-traefik-cert-loader
-  namespace: default
+  namespace: cert-manager
 spec:
   rules:
 """ + "\n".join(

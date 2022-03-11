@@ -3,14 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "771-blue"
-  namespace: default
+  name: "jemand771-net"
+  namespace: cert-manager
 spec:
-  secretName: cert-key-771-blue
+  secretName: cert-key-jemand771-net
   issuerRef:
-    name: lets-encrypt-771-blue
+    name: cf-issuer
     kind: ClusterIssuer
   dnsNames:
-    - 771.blue
-    - "*.tunnel.771.blue"
-    - "*.771.blue"
+    - jemand771.net
+    - "*.jemand771.net"

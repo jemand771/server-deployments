@@ -3,13 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "771-red"
-  namespace: default
+  name: "no-bitch-es"
+  namespace: cert-manager
 spec:
-  secretName: cert-key-771-red
+  secretName: cert-key-no-bitch-es
   issuerRef:
-    name: lets-encrypt-771-red
+    name: cf-issuer
     kind: ClusterIssuer
   dnsNames:
-    - 771.red
-    - "*.771.red"
+    - no-bitch.es
+    - "*.no-bitch.es"

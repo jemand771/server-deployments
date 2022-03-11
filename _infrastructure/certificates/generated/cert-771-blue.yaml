@@ -3,13 +3,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "no-bitch-es"
-  namespace: default
+  name: "771-blue"
+  namespace: cert-manager
 spec:
-  secretName: cert-key-no-bitch-es
+  secretName: cert-key-771-blue
   issuerRef:
-    name: lets-encrypt-no-bitch-es
+    name: cf-issuer
     kind: ClusterIssuer
   dnsNames:
-    - no-bitch.es
-    - "*.no-bitch.es"
+    - 771.blue
+    - "*.tunnel.771.blue"
+    - "*.771.blue"
