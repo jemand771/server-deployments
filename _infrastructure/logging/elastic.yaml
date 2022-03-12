@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastic
+  namespace: logging
+  labels:
+    app: graylog-elastic
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: graylog-elastic
+  template:
+    metadata:
+      labels:
+        app: graylog-elastic
+    spec:
+      containers:
+        - name: elastic
+          image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+          ports:
+            - containerPort: 9200
+              name: elastic
+          env:
+            - name: http.host
+              value: 0.0.0.0
+            - name: transport.host
+              value: localhost
+            - name: network.host
+              value: 0.0.0.0
+            - name: ES_JAVA_OPTS
+              value: "-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m"
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: elastic-data
+      volumes:
+        - name: elastic-data
+          persistentVolumeClaim:
+            claimName: graylog-elastic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elastic
+  namespace: logging
+spec:
+  selector:
+    app: graylog-elastic
+  ports:
+    - port: 9200
+      name: elastic
