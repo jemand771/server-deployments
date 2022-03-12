@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth-test
-          image: nginx
+          image: containous/whoami
           ports:
             - containerPort: 80
               name: web
