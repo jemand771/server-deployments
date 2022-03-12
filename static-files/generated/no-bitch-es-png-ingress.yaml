@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: no-bitch-es-png
+  namespace: static-files
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: static-files-no-bitch-es-png@kubernetescrd
+spec:
+  rules:
+    - host: no-bitch.es
+      http:
+        paths:
+          - backend:
+              service:
+                name: static-nginx
+                port:
+                  name: web
+            pathType: Exact
+            path: /png
