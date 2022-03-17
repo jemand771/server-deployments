@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: loki
+  namespace: metrics
+spec:
+  targetNamespace: metrics
+  chart: loki
+  repo: https://grafana.github.io/helm-charts
+  version: 2.10.1
+  # language=yaml
+  valuesContent: |
