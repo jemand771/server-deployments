@@ -3,9 +3,12 @@
 
 # this file is basically a 1:1 copy of https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 # but with the --insecure flag added to the argocd-server deployment to allow traefik to terminate tls
-# and the argocd-cm configmap removed (not checked into repo for security reasons)
+# and some configuration resources removed:
+#   * argocd-cm
+#   * argocd-rbac-cm
+#   * argocd-secret
+# (see other files in this folder)
 
-# also, note to self:
 # DO NOT APPLY USING PYCHARMS K8S INTEGRATION. the manifests in this file don't have a namespace set.
 
 apiVersion: apiextensions.k8s.io/v1
@@ -9581,14 +9584,6 @@ metadata:
   name: argocd-notifications-cm
 ---
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app.kubernetes.io/name: argocd-rbac-cm
-    app.kubernetes.io/part-of: argocd
-  name: argocd-rbac-cm
----
-apiVersion: v1
 data:
   ssh_known_hosts: |-
     bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw==
@@ -9620,15 +9615,6 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: argocd-notifications-secret
-type: Opaque
----
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    app.kubernetes.io/name: argocd-secret
-    app.kubernetes.io/part-of: argocd
-  name: argocd-secret
 type: Opaque
 ---
 apiVersion: v1
