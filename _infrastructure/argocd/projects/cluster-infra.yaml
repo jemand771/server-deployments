@@ -17,6 +17,8 @@ spec:
         name: argocd-cm
       - kind: Secret
         name: argocd-initial-admin-secret
+      - kind: Secret
+        name: argocd-secret
         # no clue what this is, but it's here and I'm too scared to touch it
       - kind: Secret
         name: repo-1311690692
