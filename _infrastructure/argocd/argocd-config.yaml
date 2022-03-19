@@ -8,6 +8,7 @@ metadata:
   namespace: argocd
 data:
   url: https://argo.jemand771.net
+  admin.enabled: "false"
   # language=yaml
   oidc.config: |
     name: authentik
