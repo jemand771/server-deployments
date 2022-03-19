@@ -13,7 +13,7 @@ data:
     name: authentik
     issuer: https://sso.jemand771.net/application/o/argocd/
     clientID: aa4af3f7f3e202e70de38a99efe594f75c820a92
-    clientSecret: $oidc.authentik.clientSecret
+    clientSecret: $argocd-extra-secret:oidc.authentik.clientSecret
     logoutURL: https://sso.jemand771.net/if/session-end/argocd/
 ---
 apiVersion: v1
