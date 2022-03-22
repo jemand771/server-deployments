@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cd-calendar-sync
+  namespace: cd-calendar-sync
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app: cd-calendar-sync
+  template:
+    metadata:
+      labels:
+        app: cd-calendar-sync
+    spec:
+      containers:
+        - name: cd-calendar-sync
+          image: jemand771/cd-scraper
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+          volumeMounts:
+            - mountPath: /config/campusdual.json
+              name: secrets
+              subPath: campusdual.json
+            - mountPath: /config/dozent.json
+              name: secrets
+              subPath: dozent.json
+            - mountPath: /config/calendar-api.json
+              name: secrets
+              subPath: calendar-api.json
+            - mountPath: /config/calendar.json
+              name: secrets
+              subPath: calendar.json
+            - mountPath: /config
+              name: data
+      volumes:
+        - name: secrets
+          secret:
+            secretName: cd-calendar-secret
+        - name: data
+          persistentVolumeClaim:
+            claimName: cd-calendar-sync
