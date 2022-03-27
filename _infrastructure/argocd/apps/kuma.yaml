@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kuma
+  namespace: argocd
+spec:
+  destination:
+    namespace: kuma
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: _infrastructure/kuma
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
