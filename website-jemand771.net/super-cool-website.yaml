@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: website-jemand771-net
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cool-website
+  namespace: website-jemand771-net
+spec:
+  selector:
+    matchLabels:
+      app: cool-website
+  template:
+    metadata:
+      name: cool-website
+      labels:
+        app: cool-website
+    spec:
+      containers:
+        - name: cool-website
+          image: nginx
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/index.html
+              name: html
+              subPath: index
+      volumes:
+        - name: html
+          configMap:
+            name: cool-website-content
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cool-website-content
+  namespace: website-jemand771-net
+data:
+  # language=html
+  index: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>willy's website</title>
+    </head>
+    <body>
+      <p>hello <span style="font-size: 0.6rem;">uwu</span></p>
+    </body>
+    </html>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cool-website
+  namespace: website-jemand771-net
+spec:
+  selector:
+    app: cool-website
+  ports:
+    - port: 80
+      name: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cool-website
+  namespace: website-jemand771-net
+spec:
+  rules:
+    - host: jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: cool-website
+                port:
+                  name: web
+            path: /
+            pathType: Exact
