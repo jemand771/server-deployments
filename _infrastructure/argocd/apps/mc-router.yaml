@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mc-router
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: mc-infra
+  source:
+    path: minecraft/mc-router
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
