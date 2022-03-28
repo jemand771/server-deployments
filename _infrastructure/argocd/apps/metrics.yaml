@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics
+  namespace: argocd
+spec:
+  destination:
+    namespace: metrics
+    server: https://kubernetes.default.svc
+  project: cluster-infra
+  source:
+    path: _infrastructure/metrics
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
