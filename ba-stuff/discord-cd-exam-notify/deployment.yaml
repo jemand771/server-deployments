@@ -11,6 +11,16 @@ spec:
       labels:
         app: discord-cd-exam-notify
     spec:
+      initContainers:
+        - name: save-data
+          image: ghcr.io/jemand771/discord-cd-exam-notify:1.0.0
+          command:
+            - sh
+            - -c
+            - cp -rt /app-mnt /app/*
+          volumeMounts:
+            - mountPath: /app-mnt
+              name: data
       containers:
         - name: discord-cd-exam-notify
           image: ghcr.io/jemand771/discord-cd-exam-notify:1.0.0
@@ -21,3 +31,9 @@ spec:
             # this is required for logs to work properly
             - name: PYTHONUNBUFFERED
               value: "1"
+          volumeMounts:
+            - mountPath: /app
+              name: data
+      volumes:
+        - name: data
+          emptyDir: {}
