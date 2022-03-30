@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: kuma
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '3001'
     spec:
       containers:
         - name: kuma
