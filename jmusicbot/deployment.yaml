@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jmusicbot
+  namespace: jmusicbot
+spec:
+  selector:
+    matchLabels:
+      app: jmusicbot
+  template:
+    metadata:
+      labels:
+        app: jmusicbot
+    spec:
+      containers:
+        - name: jmusicbot
+          image: ghcr.io/jemand771/jmusicbot:latest
+          volumeMounts:
+            - mountPath: /app/config.txt
+              name: config
+              subPath: config.txt
+      volumes:
+        - name: config
+          secret:
+            secretName: jmusicbot-config
