@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: meilisearch
+  namespace: meilisearch-test
+spec:
+  rules:
+    - host: meilisearch-test.771.blue
+      http:
+        paths:
+          - backend:
+              service:
+                name: meilisearch
+                port:
+                  name: meili
+            pathType: Prefix
+            path: /

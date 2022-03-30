@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: meili-config
+  namespace: meilisearch-test
+spec:
+  encryptedData:
+    MEILI_MASTER_KEY: AgCJefi3VGE5sXNPHvEAlvDtzz1sKHCpy/fE+0/lsL8IUCdUn/Xjp23pSS5LFnypb3ysxulg20jeGadYXDTuSrpVUDgzYALFddNS5Wcm81iE7su/Yvr3Pa9NAU12xuJOcivOOuxEeKiJ15ojo6Zv/Ad57hiHMD9O8xcKgo2+3a7dgk+vcuf1g68vH2SDsN88q0pIoePorTmoN6nBW/I3sd5t6xZiELI8nufhvYzlORI0Hrh9+rRQFE/MpuxTNnUll+dnHp0JPNuuprSSlBJex0WSRgaOWFRqiEnz2nus+6BrNOmUs4d/kNIVXK2ERxqRXToFcZD2caiejLv2JuCm/Xokcq1PqzvdJC9d4tLgXNaB594yBURb5H6zDF3onhf86KOPxOeY192Bg5E0iE8n6NVdxATm499/0Gy+XPjOYq1LHi0i6Z36tIiB4NPHfF6YpYqMlnBtPFgRwTi424NHsVU8hElazn9+eHTNqGBxlBVAXjlX2onVIj5pyyL0auEPIS87Uqb//I/+bgXbyt2QzyM4vEsL/XutCIJMiJn53XrgF4xs+GpqYrNPKBdwT0vvpdApemYA36dJnboB2M3nWt3ltVK/zxOPSs7YC7y8/aZLxcHHqNK+IlM+fuMqOdd2lEohT+a9KBJuvBM9phOHgzDoWhzdN5p3nqLK+JkIuJv8+8yvc2YiKMIbxqhynhOJdE1nW7809fsuz7xOOJCB03QB
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: meili-config
+      namespace: meilisearch-test
+

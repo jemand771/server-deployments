@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meilisearch
+  namespace: meilisearch-test
+  labels:
+    app: meilisearch-test
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app: meilisearch-test
+  template:
+    metadata:
+      labels:
+        app: meilisearch-test
+    spec:
+      containers:
+        - name: meilisearch
+          image: getmeili/meilisearch:latest
+          envFrom:
+            - secretRef:
+                name: meili-config
+          ports:
+            - containerPort: 7700
+              name: meili
+          resources:
+            requests:
+              memory: 8Gi
+              cpu: 100m
+              ephemeral-storage: 50Gi
+            limits:
+              memory: 16Gi
+              cpu: 500m
+              ephemeral-storage: 500Gi
