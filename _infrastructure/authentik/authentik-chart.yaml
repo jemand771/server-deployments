@@ -31,6 +31,7 @@ spec:
       postgresqlPassword: "dummy"
     redis:
       enabled: true
+      architecture: replication
     env:
       AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: "false"
       AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: "false"
