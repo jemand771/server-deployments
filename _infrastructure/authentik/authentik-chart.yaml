@@ -32,6 +32,17 @@ spec:
     redis:
       enabled: true
       architecture: replication
+      master:
+        initContainers:
+          - command:
+              - sh
+              - -c
+              - echo yes | redis-check-aof --fix  /data/appendonly.aof
+            image: docker.io/bitnami/redis:6.2.5-debian-10-r34
+            name: repair-redis
+            volumeMounts:
+              - mountPath: /data
+                name: redis-data
     env:
       AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: "false"
       AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: "false"
