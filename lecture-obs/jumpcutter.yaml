@@ -28,7 +28,7 @@ spec:
                   name: jumpcutter-secret
                   key: nextcloud_url
             - name: NEXTCLOUD_FOLDER
-              value: "5. Semester/Vorlesungen"
+              value: "BA_Public/5. Semester/Vorlesungen"
             - name: NEXTCLOUD_USERNAME
               valueFrom:
                 secretKeyRef:
