@@ -12,6 +12,7 @@ spec:
       labels:
         app: jmusicbot
     spec:
+      serviceAccountName: probe-sa
       containers:
         - name: jmusicbot
           image: ghcr.io/jemand771/jmusicbot:latest
@@ -19,6 +20,15 @@ spec:
             - mountPath: /app/config.txt
               name: config
               subPath: config.txt
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - '! curl https://kubernetes.default/api/v1/namespaces/jmusicbot/pods/$HOSTNAME/log -ks -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" | grep "Exception in"'
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 1
       volumes:
         - name: config
           secret:

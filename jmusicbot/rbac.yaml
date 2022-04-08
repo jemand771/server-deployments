@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: probe-sa
+  namespace: jmusicbot
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: probe-role
+  namespace: jmusicbot
+rules:
+  - apiGroups:
+      - ""
+    verbs:
+      - "get"
+    resources:
+      - "pods"
+      - "pods/log"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: probe-rb
+  namespace: jmusicbot
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: probe-role
+subjects:
+  - kind: ServiceAccount
+    name: probe-sa
+    namespace: jmusicbot
