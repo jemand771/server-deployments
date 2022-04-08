@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cd-calendar-sync
-          image: jemand771/cd-scraper
+          image: jemand771/cd-scraper:latest-new
           env:
             - name: PYTHONUNBUFFERED
               value: "1"
