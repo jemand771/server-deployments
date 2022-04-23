@@ -30,6 +30,10 @@ spec:
           stdin: true
           tty: true
           env:
+            - name: UID
+              value: "0"
+            - name: GID
+              value: "0"
             - name: EULA
               value: "true"
             - name: TYPE
