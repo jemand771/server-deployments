@@ -1038,6 +1038,9 @@ spec:
         # Should be: mount path of the volume longhorn-default-setting + the key of the configmap data in 04-default-setting.yaml
         - name: DEFAULT_SETTING_PATH
           value: /var/lib/longhorn-setting/default-setting.yaml
+        # https://github.com/longhorn/longhorn/issues/1768
+        - name: GODEBUG
+          value: netdns=go
       volumes:
       - name: dev
         hostPath:

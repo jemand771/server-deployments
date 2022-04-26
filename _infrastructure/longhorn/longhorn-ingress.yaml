@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: longhorn-ingress
   namespace: longhorn-system
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+#  annotations:
+#    traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 spec:
   rules:
     - host: longhorn.jemand771.net
