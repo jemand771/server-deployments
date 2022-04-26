@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backup-box
+  namespace: longhorn-system
+  labels:
+    app: backup-box
+spec:
+  selector:
+    matchLabels:
+      app: backup-box
+  template:
+    metadata:
+      labels:
+        app: backup-box
+    spec:
+      containers:
+        - name: minio
+          image: quay.io/minio/minio:RELEASE.2022-03-17T06-34-49Z
+          args:
+            - server
+            - --console-address
+            - :8090
+            - /data
+          ports:
+            - name: minio
+              containerPort: 9000
+            - name: console
+              containerPort: 8090
+          volumeMounts:
+            - mountPath: /data
+              name: data
+          livenessProbe:
+            httpGet:
+              path: /minio/health/live
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: data
+          flexVolume:
+            driver: fstab/cifs
+            fsType: cifs
+            secretRef:
+              name: storagebox-secret
+            options:
+              networkPath: //u298205.your-storagebox.de/u298205-sub1
+              mountOptions: "dir_mode=0755,file_mode=0644,noperm"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backup-box
+  namespace: longhorn-system
+spec:
+  selector:
+    app: backup-box
+  ports:
+    - port: 9000
+      name: minio
+      targetPort: minio
