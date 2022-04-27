@@ -31,3 +31,13 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: kuma
+      # this is VERY hacky.
+      # I couldn't figure out how to do NAT reflection or hairpinning,
+      # so this has to do for now.
+      # This might be solvable by getting an extra ipv4 for the k8s vm
+      hostAliases:
+        - ip: 10.10.10.31
+          hostnames:
+            - minio.jemand771.net
+            - sso.jemand771.net
+            - jemand771.net
