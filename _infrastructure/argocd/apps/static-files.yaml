@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: static-files
+  namespace: argocd
+spec:
+  destination:
+    namespace: static-files
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: static-files/generated
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
