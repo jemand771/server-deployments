@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: discord-cd-exam-notify
+  namespace: argocd
+spec:
+  destination:
+    namespace: discord-cd-exam-notify
+    server: https://kubernetes.default.svc
+  project: ba-stuff
+  source:
+    path: ba-stuff/discord-cd-exam-notify
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
