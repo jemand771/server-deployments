@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: discord-cd-exam-notify
+  namespace: discord-cd-exam-notify
 spec:
   selector:
     matchLabels:
