@@ -2,6 +2,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: smp5-plan
+  namespace: smp5
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 spec:

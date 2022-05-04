@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: smp5-config
+  namespace: smp5
 data:
   bluemap_core: |
     accept-download: true

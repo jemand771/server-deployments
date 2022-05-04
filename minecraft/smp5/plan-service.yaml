@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: smp5-plan
+  namespace: smp5
 spec:
   ports:
     - port: 8804

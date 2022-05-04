@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: smp5-data
+  namespace: smp5
 spec:
   accessModes:
     - ReadWriteMany

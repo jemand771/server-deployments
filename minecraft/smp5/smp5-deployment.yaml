@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: smp5
+  namespace: smp5
   labels:
     app: smp5
   annotations:
