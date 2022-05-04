@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgb-lightness-server
+  namespace: rgb-lightness-server
+  labels:
+    app: rgb-lightness-server
+spec:
+  selector:
+    matchLabels:
+      app: rgb-lightness-server
+  template:
+    metadata:
+      labels:
+        app: rgb-lightness-server
+    spec:
+      containers:
+        - name: rgb-lightness-server
+          image: ghcr.io/jemand771/rgb-lightness-server:sha-d429f9a
+          ports:
+            - name: web
+              containerPort: 80
+          resources:
+            limits:
+              cpu: 100m
+              memory: 0.5Gi

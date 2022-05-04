@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rgb-lightness-server
+  namespace: argocd
+spec:
+  destination:
+    namespace: rgb-lightness-server
+    server: https://kubernetes.default.svc
+  project: ba-stuff
+  source:
+    path: ba-stuff/rgb-lightness-server
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

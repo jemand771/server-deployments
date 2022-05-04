@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rgb-lightness-server
+  namespace: rgb-lightness-server
+spec:
+  selector:
+    app: rgb-lightness-server
+  ports:
+  - port: 80
+    name: web
+    targetPort: web
+
