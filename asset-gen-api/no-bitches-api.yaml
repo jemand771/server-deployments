@@ -15,7 +15,7 @@ metadata:
 spec:
   replacePathRegex:
     regex: ^/$
-    replacement: /NO+BITCHES%3f
+    replacement: /NO%20API%3f
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
