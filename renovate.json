@@ -4,6 +4,7 @@
   ],
   "kubernetes": {
     "fileMatch": [
+      "^asset-gen-api/",
       "^ba-stuff/",
       "^lecture-obs/",
       "^minecraft/",

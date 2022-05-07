@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asset-gen-api
+  namespace: asset-gen-api
+  labels:
+    app: asset-gen-api
+spec:
+  selector:
+    matchLabels:
+      app: asset-gen-api
+  template:
+    metadata:
+      labels:
+        app: asset-gen-api
+    spec:
+      containers:
+        - name: asset-gen-api
+          image: ghcr.io/jemand771/asset-gen-api:sha-963cb67
+          ports:
+            - containerPort: 80
+              name: web
+          resources:
+            limits:
+              cpu: 100m
+              memory: 1Gi

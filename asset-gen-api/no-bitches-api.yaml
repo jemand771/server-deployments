@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: no-bitches-api-addprefix
+  namespace: asset-gen-api
+spec:
+  addPrefix:
+    prefix: /preset/no-bitches
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: no-bitches-api
+  namespace: asset-gen-api
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: asset-gen-api-no-bitches-api-addprefix@kubernetescrd
+spec:
+  rules:
+    - host: api.no-bitch.es
+      http:
+        paths:
+          - backend:
+              service:
+                name: asset-gen-api
+                port:
+                  name: web
+            pathType: Prefix
+            path: /
