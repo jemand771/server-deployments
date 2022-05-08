@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: asset-gen-api
-          image: ghcr.io/jemand771/asset-gen-api:sha-06cf10b
+          image: ghcr.io/jemand771/asset-gen-api:0.0.1
           ports:
             - containerPort: 80
               name: web
