@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jumpcutter
+  namespace: lecture-obs
   labels:
     app: jumpcutter
   annotations:
@@ -69,6 +70,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jumpcutter
+  namespace: lecture-obs
 spec:
   ports:
     - name: http
@@ -80,6 +82,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: jumpcutter
+  namespace: lecture-obs
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
 spec:
