@@ -27,6 +27,7 @@ spec:
           memory: 1G
     persistence:
       size: 10Gi
+      accessMode: ReadWriteMany
     ingress:
       # set a nonexisting ingress class in order to prevent routing jemand771.net to mailu-front
       className: foobar
