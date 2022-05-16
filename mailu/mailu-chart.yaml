@@ -17,7 +17,10 @@ spec:
       controller:
         kind: DaemonSet
     certmanager:
-      enabled: false
+      enabled: true
+      issuerType: ClusterIssuer
+      issuerName: cf-issuer
+      apiVersion: cert-manager.io/v1
     mailuVersion: 1.9.20
     rspamd:
       startupProbe:
