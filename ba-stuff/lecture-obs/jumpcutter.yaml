@@ -29,7 +29,7 @@ spec:
                   name: jumpcutter-secret
                   key: nextcloud_url
             - name: NEXTCLOUD_FOLDER
-              value: "BA_Public/5. Semester/Vorlesungen"
+              value: "BA_Public/6. Semester/Vorlesungen"
             - name: NEXTCLOUD_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -42,12 +42,7 @@ spec:
                   key: nextcloud_password
             - name: COURSE_NAMES
               value: |
-                TI-DVS (Kaiser),
-                TI-DIS (Sporer),
-                TI-BWPM (Nehrig),
-                TI-BWPM (Weiß),
-                TI-ÜT (Borchert),
-                TI-DVS (Sporer)
+                TI-MMT (Hermann)
             - name: DISCORD_WEBHOOK
               valueFrom:
                 secretKeyRef:
