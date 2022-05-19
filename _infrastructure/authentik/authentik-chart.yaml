@@ -17,6 +17,13 @@ spec:
         enabled: true
       postgresql:
         password: "dummy"
+      email:
+        host: mailc.jemand771.net
+        port: 587
+        username: sso@jemand771.net
+        # password in secret file
+        use_tls: true
+        from: sso@jemand771.net
     ingress:
       enabled: true
       annotations:
