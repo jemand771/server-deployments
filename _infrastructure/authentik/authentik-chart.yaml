@@ -7,7 +7,7 @@ spec:
   targetNamespace: authentik
   chart: authentik
   repo: https://charts.goauthentik.io
-  version: 5.2.1
+  version: 2022.4.3
   # NOTE some values in here are secrets set by a HelmChartConfig that isn't checked into the repo
   # language=yaml
   valuesContent: |
