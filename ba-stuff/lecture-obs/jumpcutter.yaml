@@ -42,7 +42,8 @@ spec:
                   key: nextcloud_password
             - name: COURSE_NAMES
               value: |
-                TI-MMT (Hermann)
+                TI-MMT (Hermann),
+                TI-BWLR (Hilgarth)
             - name: DISCORD_WEBHOOK
               valueFrom:
                 secretKeyRef:
