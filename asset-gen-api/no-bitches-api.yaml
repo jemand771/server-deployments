@@ -17,13 +17,23 @@ spec:
     regex: ^/$
     replacement: /NO%20API%3f
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: no-bitches-api-favicon
+  namespace: asset-gen-api
+spec:
+  replacePathRegex:
+    regex: ^/favicon.ico$
+    replacement: /NO%20FAVICON%3f
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: no-bitches-api
   namespace: asset-gen-api
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: asset-gen-api-no-bitches-api-default-text@kubernetescrd,asset-gen-api-no-bitches-api-addprefix@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: asset-gen-api-no-bitches-api-default-text@kubernetescrd,asset-gen-api-no-bitches-api-favicon@kubernetescrd,asset-gen-api-no-bitches-api-addprefix@kubernetescrd
 spec:
   rules:
     - host: api.no-bitch.es
