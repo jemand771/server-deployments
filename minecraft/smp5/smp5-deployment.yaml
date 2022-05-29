@@ -64,6 +64,7 @@ spec:
                 Callme_Froggo
                 Enokiza
                 houndakiss
+                st3ver
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
