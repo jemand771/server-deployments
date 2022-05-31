@@ -20,6 +20,6 @@ spec:
   ports:
     - name: tunnel
       port: 4443
-      nodePort: 32123
+      nodePort: 32443
   selector:
     app: pgrok
