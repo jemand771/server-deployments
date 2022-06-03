@@ -2,33 +2,13 @@
 # but since that's even more overkill (at least for me) than a single-host single-disk install over 4 instances,
 # I'm going with this.
 # (look mom, no files)
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: minio
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: minio
-  labels:
-    app: minio
-  namespace: minio
-spec:
-  ports:
-  - port: 9000
-    name: minio
-  - port: 8090
-    name: console
-  selector:
-    app: minio
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: minio
   namespace: minio
 spec:
+  podManagementPolicy: Parallel
   selector:
     matchLabels:
       app: minio
