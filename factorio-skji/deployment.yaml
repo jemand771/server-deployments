@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: factorio
+  namespace: factorio-skji
+  labels:
+    app: factorio
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: factorio
+  template:
+    metadata:
+      labels:
+        app: factorio
+    spec:
+      initContainers:
+        - name: import-config
+          image: ubuntu:22.04
+          command:
+            - cp
+            - -r
+            - /config
+            - /factorio
+          volumeMounts:
+            - mountPath: /factorio
+              name: data
+            - mountPath: /config
+              name: config
+      containers:
+        - name: factorio
+          image: factoriotools/factorio:1.1.59
+          ports:
+            - containerPort: 34197
+              name: factorio
+              protocol: UDP
+            - containerPort: 27015
+              name: rcon
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /factorio
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: factorio-data
+        - name: config
+          configMap:
+            name: server-config
