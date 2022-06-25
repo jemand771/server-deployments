@@ -12,7 +12,8 @@ data:
   # language=yaml
   server-whitelist.json: |
     [
-      "jemand771"
+      "jemand771",
+      "firecai2 "
     ]
   # language=yaml
   server-settings.json: |
