@@ -13,7 +13,7 @@ data:
   server-whitelist.json: |
     [
       "jemand771",
-      "firecai2 "
+      "firecai2"
     ]
   # language=yaml
   server-settings.json: |
