@@ -3,6 +3,7 @@ import pathlib
 
 
 def main():
+    os.system("kubectl config use-context 771-new")
     for ext in ("json", "yaml"):
         for file in pathlib.Path("..").glob(f"**/*.{ext}s"):
             new_file = file.parent / file.name[:-1]
