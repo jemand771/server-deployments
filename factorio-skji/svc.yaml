@@ -12,3 +12,16 @@ spec:
       protocol: UDP
       name: factorio
       targetPort: factorio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: factorio-rcon
+  namespace: factorio-skji
+spec:
+  selector:
+    app: factorio
+  ports:
+    - port: 27015
+      name: rcon
+      targetPort: rcon
