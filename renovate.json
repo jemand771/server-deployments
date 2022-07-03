@@ -7,6 +7,7 @@
     "fileMatch": [
       "^asset-gen-api/",
       "^ba-stuff/",
+      "^factorio-skji/",
       "^lecture-obs/",
       "^minecraft/",
       "^misc-metric-collector/",
