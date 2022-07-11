@@ -10,6 +10,11 @@ spec:
     ports:
       web:
         redirectTo: websecure
+      websecure:
+        http3: {}
+    experimental:
+      http3:
+        enabled: false
     service:
       spec:
         externalTrafficPolicy: Local
