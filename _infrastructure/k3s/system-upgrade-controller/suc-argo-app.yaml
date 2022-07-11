@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: system-upgrade-controller
-  namespace: system-upgrade
+  namespace: argocd
 spec:
   destination:
     namespace: system-upgrade
