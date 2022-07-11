@@ -40,8 +40,6 @@ spec:
               value: "https://grafana.771.blue"
             - name: GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH
               value: "contains(groups[*], 'grafana-admin') && 'Admin' || contains(groups[*], 'grafana-edit') && 'Editor' || 'Viewer'"
-            - name: GF_LOG_LEVEL
-              value: debug
           envFrom:
             - secretRef:
                 name: grafana-oauth
