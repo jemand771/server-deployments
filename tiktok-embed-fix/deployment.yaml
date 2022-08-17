@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  namespace: tiktok-embed-fix
+  labels:
+    app: tiktok-embed-fix
+    component: server
+spec:
+  selector:
+    matchLabels:
+      app: tiktok-embed-fix
+      component: server
+  template:
+    metadata:
+      labels:
+        app: tiktok-embed-fix
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: ghcr.io/jemand771/tiktok-embed-fix:1.0.0
+          ports:
+            - containerPort: 80
+              name: web
+          env:
+            - name: REDIS_HOST
+              value: redis
+              # this is needed because kubernetes autofills REDIS_PORT to something I don't want
+            - name: REDIS_PORT
+              value: "6379"

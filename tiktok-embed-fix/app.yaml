@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tiktok-embed-fix
+  namespace: argocd
+spec:
+  destination:
+    namespace: tiktok-embed-fix
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: tiktok-embed-fix
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

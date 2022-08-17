@@ -12,6 +12,7 @@
       "^minecraft/",
       "^misc-metric-collector/",
       "^static-files/",
+      "^tiktok-embed-fix/",
       "^tunnel/"
     ]
   }
