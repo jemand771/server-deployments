@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dummy-traefik-cert-loader
-          image: nginx
+          image: containous/whoami
           ports:
             - containerPort: 80
   selector:
