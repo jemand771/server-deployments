@@ -15,3 +15,14 @@ spec:
                   name: web
             pathType: Prefix
             path: /
+
+    - host: "*.tiktok.771.blue"
+      http:
+        paths:
+          - backend:
+              service:
+                name: server
+                port:
+                  name: web
+            pathType: Prefix
+            path: /
