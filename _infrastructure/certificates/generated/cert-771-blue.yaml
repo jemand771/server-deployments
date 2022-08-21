@@ -12,6 +12,7 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - 771.blue
+    - "*.preview.771.blue"
     - "*.tunnel.771.blue"
     - "*.tiktok.771.blue"
     - "*.771.blue"

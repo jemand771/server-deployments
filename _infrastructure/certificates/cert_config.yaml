@@ -2,6 +2,7 @@
 - name: 771.red
 - name: 771.blue
   dns_names:
+    - "*.preview.771.blue"
     - "*.tunnel.771.blue"
     - "*.tiktok.771.blue"
 - name: no-bitch.es
