@@ -7,7 +7,7 @@ spec:
   targetNamespace: mailu
   chart: mailu
   repo: https://mailu.github.io/helm-charts/
-  version: 0.3.1
+  version: 0.3.3
   # language=yaml
   valuesContent: |
     domain: jemand771.net
@@ -21,7 +21,6 @@ spec:
       issuerType: ClusterIssuer
       issuerName: cf-issuer
       apiVersion: cert-manager.io/v1
-    mailuVersion: 1.9.20
     rspamd:
       startupProbe:
         failureThreshold: 180
