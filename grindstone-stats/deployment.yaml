@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grindstone-stats
+  labels:
+    app: grindstone-stats
+    component: server
+spec:
+  selector:
+    matchLabels:
+      app: grindstone-stats
+      component: server
+  template:
+    metadata:
+      labels:
+        app: grindstone-stats
+        component: server
+    spec:
+      containers:
+      - name: grindstone-stats
+        image: ghcr.io/jemand771/grindstone-stats
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
+          name: web
+        env:
+          - name: REDIS_HOST
+            value: redis
+            # this is needed because kubernetes autofills REDIS_PORT to something I don't want
+          - name: REDIS_PORT
+            value: "6379"

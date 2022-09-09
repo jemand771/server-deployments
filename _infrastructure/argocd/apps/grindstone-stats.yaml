@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grindstone-stats
+  namespace: argocd
+spec:
+  destination:
+    namespace: grindstone-stats
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: grindstone-stats
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
