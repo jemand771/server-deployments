@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: grindstone-stats
-        image: ghcr.io/jemand771/grindstone-stats:sha-932d885
+        image: ghcr.io/jemand771/grindstone-stats:sha-4c792dd
         resources:
           limits:
             memory: "128Mi"
