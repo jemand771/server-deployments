@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: redis
-  namespace: grindstone-stats
+  namespace: tiktok-embed-fix
 spec:
   accessModes:
     - ReadWriteOnce

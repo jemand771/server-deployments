@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespace: grindstone-stats
+  namespace: tiktok-embed-fix
   labels:
-    app: grindstone-stats
+    app: tiktok-embed-fix
     component: redis
 spec:
   selector:
     matchLabels:
-      app: grindstone-stats
+      app: tiktok-embed-fix
       component: redis
   template:
     metadata:
       labels:
-        app: grindstone-stats
+        app: tiktok-embed-fix
         component: redis
     spec:
       containers:
