@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clnp-tunnel
+  namespace: metrics
+  labels:
+    app: clnp-tunnel
+spec:
+  selector:
+    matchLabels:
+      app: clnp-tunnel
+  template:
+    metadata:
+      labels:
+        app: clnp-tunnel
+    spec:
+      containers:
+        - name: tunnel
+          image: nowsci/sshtunnel:20220901035201
+          env:
+            - name: TUNNEL_HOST
+              value: ssh_forwarder@clnp.eu
+            - name: TUNNEL_PORT
+              value: "22"
+            - name: REMOTE_HOST
+              value: localhost
+            - name: LOCAL_PORT
+              value: "3306"
+            - name: REMOTE_PORT
+              value: "3306"
+            - name: KEY
+              value: /data/key
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - mountPath: /data/key
+              subPath: key
+              name: key
+
+      volumes:
+        - name: key
+          secret:
+            secretName: clnp-tunnel-key
+            defaultMode: 384
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clnp-tunnel
+  namespace: metrics
+spec:
+  selector:
+    app: clnp-tunnel
+  ports:
+    - port: 3306
+      targetPort: mysql
