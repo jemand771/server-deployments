@@ -11,6 +11,8 @@ spec:
     matchLabels:
       app: tiktok-embed-fix
       component: redis
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
