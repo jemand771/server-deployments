@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: semaphore
+  namespace: ansible-semaphore
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: semaphore
+spec:
+  selector:
+    matchLabels:
+      app: semaphore
+  template:
+    metadata:
+      labels:
+        app: semaphore
+    spec:
+      containers:
+        - name: semaphore
+          image: semaphoreui/semaphore:v2.8.68
+          ports:
+            - containerPort: 3000
+              name: web
+          env:
+            - name: SEMAPHORE_DB_USER
+              value: root
+            - name: SEMAPHORE_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: SEMAPHORE_DB_HOST
+              value: mysql
+            - name: SEMAPHORE_DB_PORT
+              value: "3306"
+            - name: SEMAPHORE_DB_DIALECT
+              value: mysql
+            - name: SEMAPHORE_DB
+              value: semaphore
+            - name: SEMAPHORE_ADMIN_NAME
+              value: admin
+            - name: SEMAPHORE_ADMIN_EMAIL
+              value: semaphore@jemand771.net
+            - name: SEMAPHORE_ADMIN
+              value: admin
+          envFrom:
+            - secretRef:
+                name: semaphore-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: semaphore
+  namespace: ansible-semaphore
+spec:
+  selector:
+    app: semaphore
+  ports:
+    - port: 80
+      name: web
+      targetPort: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: semaphore
+  namespace: ansible-semaphore
+spec:
+  rules:
+    - host: semaphore.771.blue
+      http:
+        paths:
+          - backend:
+              service:
+                name: semaphore
+                port:
+                  name: web
+            pathType: Prefix
+            path: /
