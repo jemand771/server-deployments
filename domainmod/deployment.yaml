@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domainmod
+  namespace: domainmod
+  labels:
+    app: domainmod
+spec:
+  selector:
+    matchLabels:
+      app: domainmod
+  template:
+    metadata:
+      labels:
+        app: domainmod
+    spec:
+      containers:
+        - name: domainmod
+          # TODO pin image digest
+          image: domainmod/domainmod
+          ports:
+            - containerPort: 80
+              name: web
+          env:
+            - name: DOMAINMOD_DATABASE_HOST
+              value: mariadb
+            - name: DOMAINMOD_DATABASE
+              value: domainmod
+            - name: DOMAINMOD_USER
+              value: domainmod
+            - name: DOMAINMOD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: domainmod
+                  key: db_password
+            - name: TZ
+              value: Europe/Berlin

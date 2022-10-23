@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: domainmod
+  namespace: domainmod
+spec:
+  rules:
+    - host: domainmod.jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: domainmod
+                port:
+                  name: web
+            pathType: Prefix
+            path: /

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  namespace: domainmod
+spec:
+  selector:
+    matchLabels:
+      app: domainmod-mariadb
+  serviceName: mariadb
+  template:
+    metadata:
+      labels:
+        app: domainmod-mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:10.9.2
+          ports:
+            - containerPort: 3306
+              name: db
+          env:
+            - name: MYSQL_DATABASE
+              value: domainmod
+            - name: MYSQL_USER
+              value: domainmod
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: domainmod
+                  key: db_password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: domainmod
+                  key: db_password
+            - name: TZ
+              value: Europe/Berlin
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
