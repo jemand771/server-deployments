@@ -12,3 +12,5 @@ spec:
     path: minecraft/mc-router
     repoURL: https://github.com/jemand771/server-deployments.git
     targetRevision: HEAD
+  syncPolicy:
+    automated: {}
