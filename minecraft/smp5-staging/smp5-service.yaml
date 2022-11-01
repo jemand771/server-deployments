@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smp5-mc-staging
+  namespace: smp5
+  annotations:
+    "mc-router.itzg.me/externalServerName": "smp.771.blue"
+spec:
+  ports:
+    - port: 25565
+      name: mc
+  selector:
+    app: smp5-staging

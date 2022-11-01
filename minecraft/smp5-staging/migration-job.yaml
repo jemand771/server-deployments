@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: copy-existing-server
+  namespace: smp5
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      containers:
+        - name: copy-world
+          image: secoresearch/rsync
+          command:
+            - rsync
+            - -ahO
+            - --info=progress2
+            - --exclude
+            - /bluemap
+            - --exclude
+            - /backup
+            - /data-src/
+            - /data-dst
+          volumeMounts:
+            - mountPath: /data-src
+              name: data-orig
+            - mountPath: /data-dst
+              name: data
+      volumes:
+        - name: data-orig
+          persistentVolumeClaim:
+            claimName: smp5-data
+            readOnly: true
+        - name: data
+          persistentVolumeClaim:
+            claimName: smp5-data-staging
+      restartPolicy: Never
+  backoffLimit: 1

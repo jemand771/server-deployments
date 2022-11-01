@@ -1,0 +1,19 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: smp5-plan-staging
+  namespace: smp5
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+spec:
+  rules:
+    - host: plan-staging.771.blue
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: smp5-plan-staging
+                port:
+                  number: 8804

@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smp5-staging
+  namespace: smp5
+  labels:
+    app: smp5-staging
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app: smp5-staging
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: smp5-staging
+      annotations:
+        prometheus.io/path: "/"
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9100'
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: smp5-staging
+          image: itzg/minecraft-server:2022.12.0
+          stdin: true
+          tty: true
+          env:
+            - name: UID
+              value: "0"
+            - name: GID
+              value: "0"
+            - name: EULA
+              value: "true"
+            - name: TYPE
+              value: fabric
+            - name: VERSION
+              value: "1.19.2"
+            - name: MEMORY
+              value: 12G
+            - name: OVERRIDE_SERVER_PROPERTIES
+              value: "true"
+            - name: WHITELIST
+              value: |
+                jemand771
+                AlterJani
+                Sunny_Speziell
+                Pingutoni
+                SKO88
+                Meedeo
+                1blockster2
+                skarletton
+                Hallo_XD
+                wild_moon_raven
+                Callme_Froggo
+                Enokiza
+                houndakiss
+                st3ver
+            - name: OVERRIDE_WHITELIST
+              value: "true"
+            - name: ENFORCE_WHITELIST
+              value: "true"
+            - name: OPS
+              value: |
+                jemand771
+            - name: OVERRIDE_OPS
+              value: "true"
+            - name: STOP_SERVER_ANNOUNCE_DELAY
+              value: "30"
+            - name: VANILLATWEAKS_FILE
+              value: /data/vanillatweaks.json
+            - name: SPAWN_PROTECTION
+              value: "0"
+          ports:
+            - containerPort: 25565
+              name: mc
+            - containerPort: 8804
+              name: plan
+            - containerPort: 8100
+              name: bluemap
+          livenessProbe:
+            exec:
+              command:
+                - mc-monitor
+                - status
+            periodSeconds: 5
+            failureThreshold: 6
+          startupProbe:
+            exec:
+              command:
+                - mc-monitor
+                - status
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 9
+          volumeMounts:
+            - mountPath: "/data"
+              name: data
+            - mountPath: /data/vanillatweaks.json
+              name: config
+              subPath: vanillatweaks
+          resources:
+            requests:
+              cpu: 1500m
+              memory: 12G
+            limits:
+              cpu: 3000m
+      volumes:
+        - name: data-orig
+          persistentVolumeClaim:
+            claimName: smp5-data
+            readOnly: true
+        - name: data
+          persistentVolumeClaim:
+            claimName: smp5-data-staging
+        - name: config
+          configMap:
+            name: smp5-config-staging

@@ -1,0 +1,27 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: smp5-bluemap-staging
+  namespace: smp5
+spec:
+  rules:
+    - host: smp-staging.771.blue
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: smp5-bluemap-staging
+                port:
+                  number: 8100
+    - host: smp-staging.jemand771.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: smp5-bluemap-staging
+                port:
+                  number: 8100
