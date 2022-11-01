@@ -1,0 +1,8 @@
+resources:
+  - ns.yaml
+helmCharts:
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 17.3.7
+    releaseName: redis
+    namespace: paperless

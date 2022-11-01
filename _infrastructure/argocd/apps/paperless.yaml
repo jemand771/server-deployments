@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paperless
+  namespace: argocd
+spec:
+  destination:
+    namespace: paperless
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: paperless
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
