@@ -7,6 +7,8 @@ metadata:
     app: paperless
     component: paperless
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: paperless
