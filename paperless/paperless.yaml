@@ -26,6 +26,9 @@ spec:
           livenessProbe:
             httpGet:
               port: web
+              httpHeaders:
+                - name: Host
+                  value: paperless.jemand771.net
           env:
             - name: PAPERLESS_DBHOST
               value: postgresql
