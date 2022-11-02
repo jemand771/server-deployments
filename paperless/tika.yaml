@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tika
+  namespace: paperless
+  labels:
+    app: paperless
+    component: tika
+spec:
+  selector:
+    matchLabels:
+      app: paperless
+      component: tika
+  template:
+    metadata:
+      labels:
+        app: paperless
+        component: tika
+    spec:
+      containers:
+        - name: tika
+          image: ghcr.io/paperless-ngx/tika
+          ports:
+            - containerPort: 9998
+              name: tika
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tika
+  namespace: paperless
+spec:
+  selector:
+    app: paperless
+    component: tika
+  ports:
+    - port: 9998
+      name: tika
+      targetPort: tika

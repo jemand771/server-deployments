@@ -1,0 +1,8 @@
+auth:
+  existingSecret: paperless-secret
+  secretKeys:
+    adminPasswordKey: POSTGRES_ADMIN_PASSWORD
+    userPasswordKey: POSTGRES_USER_PASSWORD
+    replicationPasswordKey: POSTGRES_REPLICATION_PASSWORD
+  username: paperless
+  database: paperless

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gotenberg
+  namespace: paperless
+  labels:
+    app: paperless
+    component: gotenberg
+spec:
+  selector:
+    matchLabels:
+      app: paperless
+      component: gotenberg
+  template:
+    metadata:
+      labels:
+        app: paperless
+        component: gotenberg
+    spec:
+      containers:
+        - name: gotenberg
+          image: docker.io/gotenberg/gotenberg:7.4
+          command:
+            - gotenberg
+            - --chromium-disable-routes=true
+          ports:
+            - containerPort: 3000
+              name: gotenberg
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gotenberg
+  namespace: paperless
+spec:
+  selector:
+    app: paperless
+    component: gotenberg
+  ports:
+    - port: 3000
+      name: gotenberg
+      targetPort: gotenberg

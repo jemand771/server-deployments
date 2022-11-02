@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  namespace: paperless
+  labels:
+    app: paperless
+    component: paperless
+spec:
+  selector:
+    matchLabels:
+      app: paperless
+      component: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+        component: paperless
+    spec:
+      containers:
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx
+          ports:
+            - containerPort: 8000
+              name: web
+          livenessProbe:
+            httpGet:
+              port: web
+          env:
+            - name: PAPERLESS_DBHOST
+              value: postgresql
+            - name: PAPERLESS_DBPORT
+              value: "5432"
+            - name: PAPERLESS_DBNAME
+              value: paperless
+            - name: PAPERLESS_DBUSER
+              value: paperless
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secret
+                  key: POSTGRES_USER_PASSWORD
+            - name: PAPERLESS_REDIS
+              value: redis://redis:6379
+            - name: PAPERLESS_TIKA_ENABLED
+              value: "1"
+            - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
+              value: http://gotenberg:3000
+            - name: PAPERLESS_TIKA_ENDPOINT
+              value: http://tika:9998
+            - name: PAPERLESS_URL
+              value: https://paperless.jemand771.net
+            - name: PAPERLESS_TIME_ZONE
+              value: Europe/Berlin
+            - name: PAPERLESS_OCR_LANGUAGE
+              value: ger+eng
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secret
+                  key: PAPERLESS_SECRET_KEY
+            - name: PAPERLESS_ADMIN_USER
+              value: admin
+            - name: PAPERLESS_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secret
+                  key: PAPERLESS_ADMIN_PASSWORD
+            - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
+              value: "1"
+            - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
+              value: X-authentik-username
+            - name: PAPERLESS_LOGOUT_REDIRECT_URL
+              value: https://sso.jemand771.net/if/session-end/paperless/
+          volumeMounts:
+            - mountPath: /usr/src/paperless/data
+              name: data
+            - mountPath: /usr/src/paperless/media
+              name: media
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-data
+        - name: media
+          persistentVolumeClaim:
+            claimName: paperless-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  selector:
+    app: paperless
+    component: paperless
+  ports:
+    - port: 80
+      name: web
+      targetPort: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless
+  namespace: paperless
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+spec:
+  rules:
+    - host: paperless.jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: paperless
+                port:
+                  name: web
+            path: /
+            pathType: Prefix

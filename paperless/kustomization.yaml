@@ -1,8 +1,18 @@
 resources:
   - ns.yaml
+  - paperless-claims.yaml
+  - paperless-secret.yaml
+  - paperless.yaml
+  - gotenberg.yaml
+  - tika.yaml
 helmCharts:
   - name: redis
     repo: https://charts.bitnami.com/bitnami
     version: 17.3.7
     releaseName: redis
+    namespace: paperless
+  - name: postgresql
+    repo: https://charts.bitnami.com/bitnami
+    version: 12.0.1
+    releaseName: postgresql
     namespace: paperless
