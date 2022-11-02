@@ -41,7 +41,7 @@ spec:
                   name: paperless-secret
                   key: POSTGRES_USER_PASSWORD
             - name: PAPERLESS_REDIS
-              value: redis://redis:6379
+              value: redis://redis-master:6379
             - name: PAPERLESS_TIKA_ENABLED
               value: "1"
             - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
