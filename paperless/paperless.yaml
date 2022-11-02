@@ -53,7 +53,7 @@ spec:
             - name: PAPERLESS_TIME_ZONE
               value: Europe/Berlin
             - name: PAPERLESS_OCR_LANGUAGE
-              value: ger+eng
+              value: deu+eng
             - name: PAPERLESS_SECRET_KEY
               valueFrom:
                 secretKeyRef:
