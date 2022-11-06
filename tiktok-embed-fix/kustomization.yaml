@@ -1,0 +1,12 @@
+resources:
+  - ns.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+helmCharts:
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 17.3.7
+    releaseName: redis
+    namespace: tiktok-embed-fix
+    valuesFile: redis-values.yaml

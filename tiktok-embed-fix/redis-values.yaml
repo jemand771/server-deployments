@@ -1,0 +1,6 @@
+architecture: standalone
+auth:
+  enabled: false
+master:
+  persistence:
+    size: 100Mi
