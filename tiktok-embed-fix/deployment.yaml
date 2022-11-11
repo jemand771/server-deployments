@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: ghcr.io/jemand771/tiktok-embed-fix:1.0.0
+          image: ghcr.io/jemand771/tiktok-embed-fix:1.1.0
           ports:
             - containerPort: 80
               name: web
