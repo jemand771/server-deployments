@@ -6,7 +6,7 @@ resources:
 helmCharts:
   - name: redis
     repo: https://charts.bitnami.com/bitnami
-    version: 17.3.7
+    version: 17.3.11
     releaseName: redis
     namespace: grindstone-stats
     valuesFile: redis-values.yaml
