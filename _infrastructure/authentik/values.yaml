@@ -30,7 +30,7 @@ envValueFrom:
   AUTHENTIK_POSTGRESQL__PASSWORD:
     secretKeyRef:
       name: authentik-secret
-      key: postgres-password
+      key: postgresql-password
   AUTHENTIK_EMAIL__PASSWORD:
     secretKeyRef:
       name: authentik-secret
@@ -38,11 +38,7 @@ envValueFrom:
 
 postgresql:
   enabled: true
-  auth:
-    existingSecret: authentik-secret
-    secretKeys:
-      adminPasswordKey: postgres-password
-      userPasswordKey: postgres-password
+  existingSecret: authentik-secret
 
 redis:
   enabled: true
