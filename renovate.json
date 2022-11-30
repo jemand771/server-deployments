@@ -5,6 +5,7 @@
   "dependencyDashboard": true,
   "kubernetes": {
     "fileMatch": [
+      "^_infrastructure/authentik/",
       "^asset-gen-api/",
       "^ba-stuff/",
       "^factorio-skji/",
