@@ -1,0 +1,59 @@
+authentik:
+  error_erporting:
+    enabled: true
+  email:
+    host: mailc.jemand771.net
+    port: 587
+    username: sso@jemand771.net
+    use_tls: true
+    from: sso@jemand771.net
+
+ingress:
+  enabled: true
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: authentik-ratelimit@kubernetescrd
+  hosts:
+    - host: sso.jemand771.net
+      paths:
+        - path: "/"
+          pathType: Prefix
+
+env:
+  AUTHENTIK_DEFAULT_USER_CHANGE_USERNAME: "false"
+  AUTHENTIK_DEFAULT_USER_CHANGE_EMAIL: "false"
+
+envValueFrom:
+  AUTHENTIK_SECRET_KEY:
+    secretKeyRef:
+      name: authentik-secret
+      key: authentik-secret
+  AUTHENTIK_POSTGRESQL__PASSWORD:
+    secretKeyRef:
+      name: authentik-secret
+      key: postgres-password
+  AUTHENTIK_EMAIL__PASSWORD:
+    secretKeyRef:
+      name: authentik-secret
+      key: email-password
+
+postgresql:
+  enabled: true
+  auth:
+    existingSecret: authentik-secret
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: postgres-password
+
+redis:
+  enabled: true
+#  master:
+#    initContainers:
+#      - command:
+#          - sh
+#          - -c
+#          - echo yes | redis-check-aof --fix  /data/appendonly.aof
+#        image: docker.io/bitnami/redis:6.2.5-debian-10-r34
+#        name: repair-redis
+#        volumeMounts:
+#          - mountPath: /data
+#            name: redis-data
