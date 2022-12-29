@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-of-life-hex
+  namespace: game-of-life-hex
+  labels:
+    app: game-of-life-hex
+spec:
+  selector:
+    matchLabels:
+      app: game-of-life-hex
+  template:
+    metadata:
+      labels:
+        app: game-of-life-hex
+    spec:
+      containers:
+        - name: game-of-life-hex
+          image: ghcr.io/jemand771/game-of-life-hex:1.0.0
+          ports:
+            - containerPort: 80
+              name: web
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi

@@ -14,7 +14,8 @@
       "^misc-metric-collector/",
       "^static-files/",
       "^tiktok-embed-fix/",
-      "^tunnel/"
+      "^tunnel/",
+      "^game-of-life-hex/"
     ]
   }
 }

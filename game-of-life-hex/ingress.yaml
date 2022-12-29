@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: game-of-life-hex
+  namespace: game-of-life-hex
+spec:
+  rules:
+    - host: hexgol.jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: game-of-life-hex
+                port:
+                  name: web
+            pathType: Prefix
+            path: /
