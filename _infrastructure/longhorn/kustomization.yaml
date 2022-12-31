@@ -6,6 +6,7 @@ resources:
   - backups.yaml
   - backup-box.yaml
   - backup-box-aws.yaml
+  - storagebox-secret.yaml
   - longhorn-ingress.yaml
 patches:
   - path: patch-storageclass.yaml
