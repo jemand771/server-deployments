@@ -12,5 +12,3 @@ spec:
     path: _infrastructure/longhorn
     repoURL: https://github.com/jemand771/server-deployments.git
     targetRevision: HEAD
-  syncPolicy:
-    automated: {}
