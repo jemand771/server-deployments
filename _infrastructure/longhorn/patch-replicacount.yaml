@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: longhorn-driver-deployer
+spec:
+  template:
+    spec:
+      containers:
+        - name: longhorn-driver-deployer
+          env:
+          # manually downscale all csi components to 1 replica
+          # for a single-node setup, more than 1 doesn't bring any advantages
+          - name: CSI_ATTACHER_REPLICA_COUNT
+            value: "1"
+          - name: CSI_PROVISIONER_REPLICA_COUNT
+            value: "1"
+          - name: CSI_RESIZER_REPLICA_COUNT
+            value: "1"
+          - name: CSI_SNAPSHOTTER_REPLICA_COUNT
+            value: "1"
