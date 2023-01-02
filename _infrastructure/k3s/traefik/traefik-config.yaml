@@ -23,6 +23,10 @@ spec:
     providers:
       kubernetesIngress:
         allowExternalNameServices: true
+        # external-dns needs publishedService.enabled to be true
+        # https://github.com/kubernetes-sigs/external-dns/blob/master/docs/faq.md#which-service-and-ingress-controllers-are-supported
+        publishedService:
+          enabled: true
       kubernetesCRD:
         allowCrossNamespace: true
         allowExternalNameServices: true
