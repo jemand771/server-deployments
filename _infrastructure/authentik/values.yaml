@@ -12,6 +12,7 @@ ingress:
   enabled: true
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: authentik-ratelimit@kubernetescrd
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
   hosts:
     - host: sso.jemand771.net
       paths:
