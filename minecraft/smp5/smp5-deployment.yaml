@@ -40,7 +40,7 @@ spec:
             - name: TYPE
               value: fabric
             - name: VERSION
-              value: "1.18.1"
+              value: "1.19.2"
             - name: FABRIC_LAUNCHER_VERSION
               value: 0.10.2
             - name: FABRIC_LOADER_VERSION
