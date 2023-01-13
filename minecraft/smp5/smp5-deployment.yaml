@@ -41,10 +41,6 @@ spec:
               value: fabric
             - name: VERSION
               value: "1.19.2"
-            - name: FABRIC_LAUNCHER_VERSION
-              value: 0.10.2
-            - name: FABRIC_LOADER_VERSION
-              value: 0.12.12
             - name: MEMORY
               value: 12G
             - name: OVERRIDE_SERVER_PROPERTIES
