@@ -195,7 +195,7 @@ data:
   # language=json
   vanillatweaks: |
     {
-      "version": "1.18",
+      "version": "1.19",
       "packs":{
         "survival": [
           "unlock all recipes",
