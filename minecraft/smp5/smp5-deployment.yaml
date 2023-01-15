@@ -103,7 +103,7 @@ spec:
             - name: STOP_SERVER_ANNOUNCE_DELAY
               value: "30"
             - name: VANILLATWEAKS_FILE
-              value: /data/vanillatweaks.json
+              value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
             - name: SPAWN_PROTECTION
               value: "0"
           ports:
