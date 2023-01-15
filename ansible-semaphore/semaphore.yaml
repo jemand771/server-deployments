@@ -16,6 +16,10 @@ spec:
       labels:
         app: semaphore
     spec:
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
       containers:
         - name: semaphore
           image: semaphoreui/semaphore:v2.8.77
