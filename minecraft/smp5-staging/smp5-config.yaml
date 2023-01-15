@@ -193,7 +193,7 @@ data:
             }
     ]
   # language=json
-  vanillatweaks: |
+  vt_datapacks: |
     {
       "type": "datapacks",
       "version": "1.19",
@@ -223,6 +223,34 @@ data:
           "treasure gems",
           "wandering trades"
         ]
-      },
-      "result": "ok"
+      }
     }
+  # language=json
+  vt_resourcepacks: |
+    {
+      "type": "resourcepacks",
+      "version": "1.19",
+      "packs": {
+      }
+    }
+  # language=json
+  vt_craftingtweaks: |
+    {
+      "type": "craftingtweaks",
+      "version": "1.19",
+      "packs": {
+        "quality-of-life": [
+          "back to blocks",
+          "universal dyeing"
+        ],
+        "craftables": [
+          "craftable gravel"
+        ],
+        "unpackables": [
+          "unpackable nether wart",
+          "unpackable wool",
+          "unpackable ice"
+        ]
+      }
+    }
+

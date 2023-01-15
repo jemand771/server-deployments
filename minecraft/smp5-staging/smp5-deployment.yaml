@@ -71,7 +71,7 @@ spec:
             - name: STOP_SERVER_ANNOUNCE_DELAY
               value: "30"
             - name: VANILLATWEAKS_FILE
-              value: /data/vanillatweaks.json
+              value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
             - name: SPAWN_PROTECTION
               value: "0"
           ports:
@@ -99,9 +99,15 @@ spec:
           volumeMounts:
             - mountPath: "/data"
               name: data
-            - mountPath: /data/vanillatweaks.json
+            - mountPath: /data/vt_datapacks.json
               name: config
-              subPath: vanillatweaks
+              subPath: vt_datapacks
+            - mountPath: /data/vt_resourcepacks.json
+              name: config
+              subPath: vt_resourcepacks
+            - mountPath: /data/vt_craftingtweaks.json
+              name: config
+              subPath: vt_craftingtweaks
           resources:
             requests:
               cpu: 1500m
