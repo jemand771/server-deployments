@@ -60,3 +60,7 @@ grafana:
   testFramework:
     enabled: false
 cleanPrometheusOperatorObjectNames: true
+prometheusOperator:
+  admissionWebhooks:
+    patch:
+      enabled: false
