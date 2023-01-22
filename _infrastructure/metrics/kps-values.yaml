@@ -44,5 +44,5 @@ grafana:
     GF_AUTH_SIGNOUT_REDIRECT_URL: "https://sso.jemand771.net/application/o/grafana/end-session/"
     GF_AUTH_OAUTH_AUTO_LOGIN: "true"
     GF_SERVER_ROOT_URL: "https://grafana.jemand771.net"
-    GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'grafana-admin') && 'Admin' || contains(groups[*], 'grafana-edit') && 'Editor' || 'Viewer'"
+    GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'grafana-grafana-admin') && 'GrafanaAdmin' || contains(groups[*], 'grafana-admin') && 'Admin' || contains(groups[*], 'grafana-edit') && 'Editor' || 'Viewer'"
   envFromSecret: grafana-oauth
