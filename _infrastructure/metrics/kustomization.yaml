@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# don't set a namespace because the helm chart needs to create services in kube-system
+resources:
+  - metrics-ns.yaml
+  - clnp-tunnel.yaml
+  - clnp-tunnel-key.yaml
+  - grafana-oauth.yaml
+  - loki.yaml
+  # TODO prometheus secret for minio job
+  # TODO custom prometheus jobs -> ServiceMonitors
+  # TODO bring back custom dashboards
+  # TODO migrate loki
+  - promtail.yaml
+helmCharts:
+  - name: kube-prometheus-stack
+    repo: https://prometheus-community.github.io/helm-charts
+    releaseName: kps
+    version: 44.2.1
+    namespace: metrics
+    includeCRDs: true
+    valuesFile: kps-values.yaml

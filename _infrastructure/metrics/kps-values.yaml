@@ -1,0 +1,48 @@
+kubeControllerManager:
+  endpoints:
+    - 10.10.10.31
+  service:
+    port: 10257
+    targetPort: 10257
+  serviceMonitor:
+    https: true
+    insecureSkipVerify: true
+kubeScheduler:
+  endpoints:
+    - 10.10.10.31
+  service:
+    port: 10259
+    targetPort: 10259
+  serviceMonitor:
+    https: true
+    insecureSkipVerify: true
+kubeProxy:
+  endpoints:
+    - 10.10.10.31
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+    hosts:
+      - prom.jemand771.net
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - grafana.jemand771.net
+  env:
+    GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
+    GF_AUTH_GENERIC_OAUTH_NAME: authentik
+    GF_AUTH_GENERIC_OAUTH_SCOPES: openid profile email
+    GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://sso.jemand771.net/application/o/authorize/"
+    GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://sso.jemand771.net/application/o/token/"
+    GF_AUTH_GENERIC_OAUTH_API_URL: "https://sso.jemand771.net/application/o/userinfo/"
+    GF_AUTH_SIGNOUT_REDIRECT_URL: "https://sso.jemand771.net/application/o/grafana/end-session/"
+    GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+    GF_SERVER_ROOT_URL: "https://grafana.jemand771.net"
+    GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'grafana-admin') && 'Admin' || contains(groups[*], 'grafana-edit') && 'Editor' || 'Viewer'"
+  envFromSecret: grafana-oauth

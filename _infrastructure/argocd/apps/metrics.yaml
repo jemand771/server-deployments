@@ -13,4 +13,6 @@ spec:
     repoURL: https://github.com/jemand771/server-deployments.git
     targetRevision: HEAD
   syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
     automated: {}
