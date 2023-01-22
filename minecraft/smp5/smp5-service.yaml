@@ -5,9 +5,13 @@ metadata:
   namespace: smp5
   annotations:
     "mc-router.itzg.me/externalServerName": "smp.jemand771.net"
+  labels:
+    app: smp5
 spec:
   ports:
     - port: 25565
       name: mc
+    - port: 9100
+      name: metrics
   selector:
     app: smp5

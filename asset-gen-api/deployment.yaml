@@ -13,10 +13,6 @@ spec:
     metadata:
       labels:
         app: asset-gen-api
-      annotations:
-        prometheus.io/path: "/metrics"
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '80'
     spec:
       containers:
         - name: asset-gen-api

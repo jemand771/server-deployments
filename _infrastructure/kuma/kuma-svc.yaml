@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: kuma
   namespace: kuma
+  labels:
+    app: kuma
 spec:
   selector:
     app: kuma

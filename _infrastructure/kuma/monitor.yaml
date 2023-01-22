@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor
+  namespace: kuma
+spec:
+  selector:
+    matchLabels:
+      app: kuma
+  endpoints:
+    - port: web

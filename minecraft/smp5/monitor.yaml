@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor
+  namespace: smp5
+spec:
+  selector:
+    matchLabels:
+      app: smp5
+  endpoints:
+    - port: metrics
+      path: /

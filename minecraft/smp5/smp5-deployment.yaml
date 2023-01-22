@@ -18,10 +18,6 @@ spec:
       name: smp5
       labels:
         app: smp5
-      annotations:
-        prometheus.io/path: "/"
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '9100'
     spec:
       terminationGracePeriodSeconds: 60
       containers:
@@ -113,6 +109,8 @@ spec:
               name: plan
             - containerPort: 8100
               name: bluemap
+            - containerPort: 9100
+              name: metrics
           livenessProbe:
             exec:
               command:

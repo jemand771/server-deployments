@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor
+  namespace: minio
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  endpoints:
+    - port: minio
+      path: /minio/v2/metrics/cluster
+      bearerTokenSecret:
+        name: monitor-secret
+        key: minio-token

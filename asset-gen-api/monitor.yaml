@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor
+  namespace: asset-gen-api
+spec:
+  selector:
+    matchLabels:
+      app: asset-gen-api
+  endpoints:
+    - port: web
