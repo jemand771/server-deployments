@@ -102,6 +102,8 @@ spec:
               value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
             - name: SPAWN_PROTECTION
               value: "0"
+            - name: MAX_TICK_TIME
+              value: "150000"  # 2m30s
           ports:
             - containerPort: 25565
               name: mc
