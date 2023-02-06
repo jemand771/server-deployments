@@ -17,6 +17,7 @@ data:
     clientSecret: $argocd-extra-secret:oidc.authentik.clientSecret
     logoutURL: https://sso.jemand771.net/if/session-end/argocd/
   kustomize.buildOptions: --enable-helm
+  application.instanceLabelKey: argocd.argoproj.io/instance
 ---
 apiVersion: v1
 kind: ConfigMap
