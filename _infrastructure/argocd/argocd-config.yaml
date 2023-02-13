@@ -18,6 +18,7 @@ data:
     logoutURL: https://sso.jemand771.net/if/session-end/argocd/
   kustomize.buildOptions: --enable-helm
   application.instanceLabelKey: argocd.argoproj.io/instance
+  exec.enabled: "true"
 ---
 apiVersion: v1
 kind: ConfigMap
