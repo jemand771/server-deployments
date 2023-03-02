@@ -57,6 +57,7 @@ spec:
                 Enokiza
                 houndakiss
                 st3ver
+                quinnaco1
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
