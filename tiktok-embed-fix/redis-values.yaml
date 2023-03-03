@@ -3,4 +3,4 @@ auth:
   enabled: false
 master:
   persistence:
-    size: 100Mi
+    size: 1Gi
