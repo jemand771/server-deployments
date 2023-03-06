@@ -58,6 +58,7 @@ spec:
                 houndakiss
                 st3ver
                 quinnaco1
+                T0nimel0ni
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
