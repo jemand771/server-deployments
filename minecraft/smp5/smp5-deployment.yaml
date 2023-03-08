@@ -59,6 +59,7 @@ spec:
                 st3ver
                 quinnaco1
                 T0nimel0ni
+                ShadyBanjo4321
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
