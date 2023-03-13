@@ -9,6 +9,7 @@ resources:
   - backup-box-aws.yaml
   - storagebox-secret.yaml
   - longhorn-ingress.yaml
+  - longhorn-monitor.yaml
 patches:
   - path: patch-storageclass.yaml
     target:
