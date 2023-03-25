@@ -20,3 +20,15 @@ helmCharts:
           - reddit
           - tiktok
           - youtube
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 17.3.11
+    releaseName: redis
+    namespace: grindstone-stats
+    valuesInline:
+      architecture: standalone
+      auth:
+        enabled: false
+      master:
+        persistence:
+          size: 1Gi

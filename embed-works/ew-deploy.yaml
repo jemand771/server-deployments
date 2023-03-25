@@ -26,6 +26,8 @@ spec:
               value: http://ufys
             - name: BASE_HOSTS
               value: embed.works,ew.771.blue
+            - name: REDIS_HOST
+              value: redis-master
           ports:
             - containerPort: 80
               name: web
