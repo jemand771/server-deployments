@@ -9,6 +9,9 @@ spec:
     spec:
       containers:
         - name: copy-world
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
           image: secoresearch/rsync
           command:
             - rsync
