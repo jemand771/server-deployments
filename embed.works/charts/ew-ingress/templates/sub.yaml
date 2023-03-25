@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sub
+  annotations:
+    cert-manager.io/cluster-issuer: cf-issuer
+spec:
+  tls:
+    - hosts:
+        {{ range $tld, $sites := .Values.domains }}
+        - "*.{{ $tld }}.{{ $.Values.root }}"
+        {{ range $sites }}
+        - "*.{{ . }}.{{ $tld }}.{{ $.Values.root }}"
+        {{ end }}
+        {{ end }}
+      secretName: cert-ew-sub
+  rules:
+    {{ range $tld, $sites := .Values.domains }}
+    - host: "*.{{ $tld }}.{{ $.Values.root }}"
+      http: &http
+        paths:
+          - backend:
+              service:
+                name: ew
+                port:
+                  name: web
+            path: /
+            pathType: Prefix
+    {{ range $sites }}
+    - host: "*.{{ . }}.{{ $tld }}.{{ $.Values.root }}"
+      http: *http
+    {{ end }}
+    {{ end }}

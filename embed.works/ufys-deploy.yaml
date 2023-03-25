@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ufys
+  labels:
+    app: embed.works
+    component: ufys
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: embed.works
+      component: ufys
+  template:
+    metadata:
+      labels:
+        app: embed.works
+        component: ufys
+    spec:
+      containers:
+        - name: ufys
+          image: ghcr.io/jemand771/ufys:br-main
+          imagePullPolicy: Always
+          env:
+            - name: MINIO_SECURE
+              value: "1"
+            - name: MINIO_ENDPOINT
+              value: cdn.jemand771.net
+            - name: MINIO_BUCKET
+              value: ufys
+          envFrom:
+            - secretRef:
+                name: minio-secret
+          ports:
+            - containerPort: 80
+              name: web

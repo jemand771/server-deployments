@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main
+  annotations:
+    cert-manager.io/cluster-issuer: cf-issuer
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.root }}
+      secretName: cert-ew-main
+  rules:
+    - host: {{ .Values.root }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: ew
+                port:
+                  name: web
+            path: /https:/
+            pathType: Prefix

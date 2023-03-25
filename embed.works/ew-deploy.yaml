@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ew
+  labels:
+    app: embed.works
+    component: ew
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: embed.works
+      component: ew
+  template:
+    metadata:
+      labels:
+        app: embed.works
+        component: ew
+    spec:
+      containers:
+        - name: ew
+          image: ghcr.io/jemand771/embed.works:br-main
+          imagePullPolicy: Always
+          env:
+            - name: UFYS_URL
+              value: http://ufys
+            - name: BASE_HOSTS
+              value: embed.works,ew.771.blue
+          ports:
+            - containerPort: 80
+              name: web

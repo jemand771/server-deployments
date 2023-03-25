@@ -1,0 +1,34 @@
+{{ range $tld, $sites := .Values.domains }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sub-redirect-{{ $tld }}
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: embed-works-host-redirect-generic-{{ $tld }}@kubernetescrd
+    cert-manager.io/cluster-issuer: cf-issuer
+spec:
+  tls:
+    - hosts:
+        - "*.{{ $.Values.root }}"
+        {{ range $sites }}
+        - "*.{{ . }}.{{ $.Values.root }}"
+        {{ end }}
+      secretName: cert-ew-redirect-{{ $tld }}
+  rules:
+    # TODO this should only exist once
+    - host: "*.{{ $.Values.root }}"
+      http: &http
+        paths:
+          - backend:
+              service:
+                name: ew
+                port:
+                  name: web
+            path: /
+            pathType: Prefix
+    {{ range $sites }}
+    - host: "*.{{ . }}.{{ $.Values.root }}"
+      http: *http
+    {{ end }}
+---
+{{ end }}

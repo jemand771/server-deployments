@@ -1,0 +1,21 @@
+namespace: embed-works
+resources:
+  - ns.yaml
+  - minio-secret.yaml
+  - ufys-deploy.yaml
+  - ufys-svc.yaml
+  - ew-deploy.yaml
+  - ew-svc.yaml
+#  - ew-ingress.yaml
+helmCharts:
+  - name: ew-ingress
+    releaseName: ew
+    namespace: embed-works
+    version: 0.0.0
+    valuesInline:
+      # TODO object naming breaks (names not dependent on release name yet)
+      root: embed.works
+      domains:
+        com:
+          - reddit
+          - tiktok

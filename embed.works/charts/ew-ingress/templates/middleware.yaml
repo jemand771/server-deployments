@@ -1,0 +1,11 @@
+{{ range $tld, $sites := .Values.domains }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: host-redirect-generic-{{ $tld }}
+spec:
+  redirectRegex:
+    regex: ^https://(.*)\.{{ $.Values.root | replace "." "\\." }}/(.*)
+    replacement: https://${1}.{{ $tld }}.{{ $.Values.root }}/${2}
+---
+{{ end }}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ew
+spec:
+  selector:
+    app: embed.works
+    component: ew
+  ports:
+    - port: 80
+      name: web
+      targetPort: web
