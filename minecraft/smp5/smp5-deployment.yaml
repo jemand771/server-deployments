@@ -107,6 +107,8 @@ spec:
               value: "0"
             - name: MAX_TICK_TIME
               value: "150000"  # 2m30s
+            - name: DIFFICULTY
+              value: hard
           ports:
             - containerPort: 25565
               name: mc

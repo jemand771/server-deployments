@@ -74,6 +74,8 @@ spec:
               value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
             - name: SPAWN_PROTECTION
               value: "0"
+            - name: DIFFICULTY
+              value: hard
           ports:
             - containerPort: 25565
               name: mc
