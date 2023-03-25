@@ -19,3 +19,4 @@ helmCharts:
         com:
           - reddit
           - tiktok
+          - youtube
