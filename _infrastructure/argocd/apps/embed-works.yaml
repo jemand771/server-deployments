@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: embed-works
+  namespace: argocd
+spec:
+  destination:
+    namespace: embed-works
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: embed-works
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
