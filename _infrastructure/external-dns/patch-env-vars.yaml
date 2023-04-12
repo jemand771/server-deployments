@@ -12,6 +12,8 @@ spec:
               value: cloudflare
             - name: EXTERNAL_DNS_TXT_PREFIX
               value: __external-dns-
+            - name: EXTERNAL_DNS_DEFAULT_TARGETS
+              value: 168.119.77.19
           envFrom:
             - secretRef:
                 name: cloudflare-token
