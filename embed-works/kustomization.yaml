@@ -6,6 +6,7 @@ resources:
   - ufys-svc.yaml
   - ew-deploy.yaml
   - ew-svc.yaml
+  - networkpolicy.yaml
 #  - ew-ingress.yaml
 helmCharts:
   - name: ew-ingress
