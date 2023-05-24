@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mailu
+resources:
+  - ns.yaml
+  - secret.yaml
+  - ingress.yaml
+helmCharts:
+  - repo: https://mailu.github.io/helm-charts/
+    name: mailu
+    version: 1.2.0
+    namespace: mailu
+    releaseName: mailu
+    valuesInline:
+      front:
+        kind: DaemonSet
+      domain: jemand771.net
+      hostnames:
+        - jemand771.net
+      ingress:
+        # set a nonexisting ingress class in order to prevent routing jemand771.net to mailu-front
+        ingressClassName: fuck-you
+      persistence:
+        size: 10Gi
+      existingSecret: mailu-secret

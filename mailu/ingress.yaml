@@ -6,6 +6,8 @@ metadata:
   labels:
     app: mailu
     component: admin
+  annotations:
+    cert-manager.io/cluster-issuer: cf-issuer
 spec:
   rules:
     - host: mail.jemand771.net
