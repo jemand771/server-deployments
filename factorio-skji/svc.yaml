@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: factorio-game
   namespace: factorio-skji
+  annotations:
+    metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
 spec:
   type: LoadBalancer
   selector:
