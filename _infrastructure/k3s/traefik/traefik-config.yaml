@@ -57,3 +57,9 @@ spec:
         addEntryPointsLabels: true
         addRoutersLabels: true
         addServicesLabels: true
+    ingressRoute:
+      dashboard:
+        matchRule: Host(`traefik.771.blue`)
+        middlewares:
+          - name: authentik
+            namespace: authentik
