@@ -34,8 +34,6 @@ spec:
       http3:
         enabled: false
     service:
-      spec:
-        externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
     providers:
