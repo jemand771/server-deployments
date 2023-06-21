@@ -12,3 +12,12 @@ spec:
     path: _infrastructure/metallb
     repoURL: https://github.com/jemand771/server-deployments.git
     targetRevision: HEAD
+  # https://github.com/metallb/metallb/issues/1681
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      jsonPointers:
+        - /spec/conversion/webhook/clientConfig/caBundle
+      kind: CustomResourceDefinition
+  syncPolicy:
+    syncOptions:
+      - RespectIgnoreDifferences=true
