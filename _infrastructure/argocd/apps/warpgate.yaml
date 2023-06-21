@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: warpgate
+  namespace: argocd
+spec:
+  destination:
+    namespace: warpgate
+    server: https://kubernetes.default.svc
+  project: cluster-infra
+  source:
+    path: _infrastructure/warpgate
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
