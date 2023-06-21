@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kube-karp
+  labels:
+    app.kubernetes.io/name: kube-karp
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kube-karp
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: kube-karp
+    spec:
+      hostNetwork: true
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: kube-karp
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          image: immanuelfodor/kube-karp:1.0.3
+          env:
+            - name: KARP_VIRTUAL_IP
+              value: 10.0.3.100
+            - name: KARP_SUBNET
+              value: "24"
+            - name: KARP_SERVER_ID
+              value: "100"
+            - name: KARP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kube-karp
+                  key: password
+          livenessProbe:
+            exec:
+              command:
+                - pidof
+                - ucarp
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 30m
+              memory: 10Mi
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule

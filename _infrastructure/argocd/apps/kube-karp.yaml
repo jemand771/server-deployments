@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-karp
+  namespace: argocd
+spec:
+  destination:
+    namespace: kube-karp
+    server: https://kubernetes.default.svc
+  project: cluster-infra
+  source:
+    path: _infrastructure/kube-karp
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
