@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warpgate
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app.kubernetes.io/name: warpgate
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: warpgate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: warpgate
+    spec:
+      initContainers:
+        - name: install-config
+          image: alpine
+          command:
+            - sh
+            - -c
+            - cp /config/* /data/
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /config
+              name: config
+      containers:
+        - name: warpgate
+          image: ghcr.io/warp-tech/warpgate:v0.7.2
+          ports:
+            - containerPort: 22
+              name: ssh
+            - containerPort: 443
+              name: https
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: warpgate-data
+        - name: config
+          secret:
+            secretName: warpgate

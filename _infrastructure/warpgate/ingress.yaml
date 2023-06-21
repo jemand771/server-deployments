@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: warpgate
+spec:
+  rules:
+    - host: warpgate.jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: warpgate
+                port:
+                  name: https
+            pathType: Prefix
+            path: /
+  tls:
+    - hosts:
+        - warpgate.jemand771.net

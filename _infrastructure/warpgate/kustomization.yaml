@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: warpgate
+resources:
+  - ns.yaml
+  - deployment.yaml
+  - secret.yaml
+  - pvc.yaml
+  - svc.yaml
+  - lb.yaml
+  - ingress.yaml
