@@ -6,5 +6,5 @@ metadata:
 data:
   # TODO will break on multi node setups (or at least make one master more master-y than the others)
   # possibly use split hoizon dns in the future
-  KUBERNETES_SERVICE_HOST: "10.0.3.2"
+  KUBERNETES_SERVICE_HOST: "10.0.3.100"
   KUBERNETES_SERVICE_PORT: "6443"
