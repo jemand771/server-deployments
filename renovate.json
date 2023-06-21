@@ -2,20 +2,5 @@
   "extends": [
     "config:base"
   ],
-  "dependencyDashboard": true,
-  "kubernetes": {
-    "fileMatch": [
-      "^_infrastructure/authentik/",
-      "^asset-gen-api/",
-      "^ba-stuff/",
-      "^factorio-skji/",
-      "^lecture-obs/",
-      "^minecraft/",
-      "^misc-metric-collector/",
-      "^static-files/",
-      "^tiktok-embed-fix/",
-      "^tunnel/",
-      "^game-of-life-hex/"
-    ]
-  }
+  "dependencyDashboard": true
 }
