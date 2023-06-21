@@ -27,7 +27,7 @@ spec:
           - bash
           - -c
           - *cmd
-        image: alpine:3.12
+        image: alpine:3.18
         securityContext:
           privileged: true
       containers:
