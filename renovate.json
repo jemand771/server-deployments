@@ -3,7 +3,11 @@
     "config:base"
   ],
   "dependencyDashboard": true,
-  "kubernetes": {},
+  "kubernetes": {
+    "fileMatch": [
+      "\\.yaml$"
+    ]
+  },
   "ignoreDeps": [
     "ew-ingress"
   ]
