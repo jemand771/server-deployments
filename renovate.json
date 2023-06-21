@@ -3,5 +3,8 @@
     "config:base"
   ],
   "dependencyDashboard": true,
-  "kubernetes": {}
+  "kubernetes": {},
+  "ignoreDeps": [
+    "ew-ingress"
+  ]
 }
