@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+spec:
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  project: cluster-infra
+  source:
+    path: _infrastructure/metallb
+    repoURL: https://github.com/jemand771/server-deployments.git
+    targetRevision: HEAD
