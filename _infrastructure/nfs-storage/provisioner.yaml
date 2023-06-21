@@ -17,7 +17,7 @@ spec:
       serviceAccountName: nfs-pod-provisioner-sa # name of service account created in rbac.yaml
       containers:
         - name: nfs-pod-provisioner
-          image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.0
+          image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.2
           volumeMounts:
             - name: nfs-provisioner-v
               mountPath: /persistentvolumes
