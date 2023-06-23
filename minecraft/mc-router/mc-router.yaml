@@ -36,18 +36,14 @@ kind: Service
 metadata:
   name: mc-router
   namespace: mc-router
+  annotations:
+    metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
 spec:
-  type: NodePort
-  externalTrafficPolicy: "Local"
+  type: LoadBalancer
   ports:
   - targetPort: proxy
     name: proxy
     port: 25565
-    nodePort: 25565
-  - targetPort: web
-    name: web
-    port: 8080
-    nodePort: 25580
   selector:
     app: mc-router
 ---
