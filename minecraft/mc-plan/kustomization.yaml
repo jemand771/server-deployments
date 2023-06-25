@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mc-plan
+resources:
+  - ns.yaml
+  - mariadb-secret.yaml
+helmCharts:
+  - repo: https://charts.bitnami.com/bitnami
+    name: mariadb
+    version: 12.2.5
+    namespace: mc-plan
+    releaseName: mariadb
+    valuesInline:
+      auth:
+        existingSecret: mariadb
+        database: plan
+        username: plan
+# TODO host the webserver in this namespace (separately from all minecraft servers)
+# see https://github.com/plan-player-analytics/Plan/issues/1991
