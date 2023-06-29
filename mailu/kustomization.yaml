@@ -19,6 +19,7 @@ helmCharts:
         externalService:
           enabled: true
           type: LoadBalancer
+          externalTrafficPolicy: Cluster
           annotations:
             metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
       domain: jemand771.net
