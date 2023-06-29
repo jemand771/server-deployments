@@ -6,17 +6,43 @@ resources:
   - clnp-tunnel.yaml
   - clnp-tunnel-key.yaml
   - grafana-oauth.yaml
-  - loki.yaml
+  - loki.minio-secret.yaml
   # TODO prometheus secret for minio job
-  # TODO custom prometheus jobs -> ServiceMonitors
   # TODO bring back custom dashboards
-  # TODO migrate loki
-  - promtail.yaml
 helmCharts:
-  - name: kube-prometheus-stack
-    repo: https://prometheus-community.github.io/helm-charts
-    releaseName: kps
-    version: 44.2.1
+#  - name: kube-prometheus-stack
+#    repo: https://prometheus-community.github.io/helm-charts
+#    releaseName: kps
+#    version: 44.2.1
+#    namespace: metrics
+#    includeCRDs: true
+#    valuesFile: kps-values.yaml
+  - repo: https://grafana.github.io/helm-charts
+    name: loki
+    version: 5.8.7
     namespace: metrics
-    includeCRDs: true
-    valuesFile: kps-values.yaml
+    releaseName: loki
+    valuesFile: loki-values.yaml
+  - repo: https://grafana.github.io/helm-charts
+    name: promtail
+    version: 6.11.5
+    namespace: metrics
+    releaseName: promtail
+    valuesInline:
+      config:
+        lokiAddress: http://loki:3100/loki/api/v1/push
+patches:
+  - path: patch-namespace.yaml
+    target:
+      version: v1
+      kind: Service
+      name: query-scheduler-discovery
+  - path: patch-namespace.yaml
+    target:
+      name: loki-write
+  - path: patch-namespace.yaml
+    target:
+      name: loki-write-headless
+# NOTE I had to increase the inotify limit in order to get promtail to work:
+# sysctl fs.inotify.max_user_instances=8192
+# see https://github.com/grafana/loki/issues/4740
