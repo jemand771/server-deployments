@@ -14,6 +14,13 @@ helmCharts:
     valuesInline:
       front:
         kind: DaemonSet
+        hostPort:
+          enabled: false
+        externalService:
+          enabled: true
+          type: LoadBalancer
+          annotations:
+            metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
       domain: jemand771.net
       hostnames:
         - jemand771.net
