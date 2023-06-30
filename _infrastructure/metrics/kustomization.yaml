@@ -10,13 +10,13 @@ resources:
   # TODO prometheus secret for minio job
   # TODO bring back custom dashboards
 helmCharts:
-#  - name: kube-prometheus-stack
-#    repo: https://prometheus-community.github.io/helm-charts
-#    releaseName: kps
-#    version: 44.2.1
-#    namespace: metrics
-#    includeCRDs: true
-#    valuesFile: kps-values.yaml
+  - name: kube-prometheus-stack
+    repo: https://prometheus-community.github.io/helm-charts
+    releaseName: kps
+    version: 44.2.1
+    namespace: metrics
+    includeCRDs: true
+    valuesFile: kps-values.yaml
   - repo: https://grafana.github.io/helm-charts
     name: loki
     version: 5.8.7
