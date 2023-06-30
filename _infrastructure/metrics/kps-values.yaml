@@ -63,4 +63,6 @@ cleanPrometheusOperatorObjectNames: true
 prometheusOperator:
   admissionWebhooks:
     patch:
+      # enable this once on initial install to create prometheus operator admission webhooks.
+      # disabled because it would prevent argocd from ever being in sync
       enabled: false
