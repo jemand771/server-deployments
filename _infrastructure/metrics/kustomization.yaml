@@ -30,7 +30,7 @@ helmCharts:
     releaseName: promtail
     valuesInline:
       config:
-        lokiAddress: http://loki:3100/loki/api/v1/push
+        lokiAddress: http://loki-write:3100/loki/api/v1/push
 patches:
   - path: patch-namespace.yaml
     target:
