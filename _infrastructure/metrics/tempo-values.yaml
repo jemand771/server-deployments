@@ -17,6 +17,12 @@ storage:
       access_key: ${MINIO_ACCESS_KEY}
       secret_key: ${MINIO_ACCESS_SECRET}
       forcepathstyle: true
+traces:
+  otlp:
+    http:
+      enabled: true
+    grpc:
+      enabled: true
 # the docs say I can use global.extraEnvFrom, but that didn't work for me :(
 ingester:
   extraArgs:
