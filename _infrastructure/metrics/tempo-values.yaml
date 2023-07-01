@@ -1,0 +1,25 @@
+storage:
+  trace:
+    backend: s3
+    s3:
+      bucket: tempo-traces
+      endpoint: cdn.jemand771.net
+      region: us-east-1
+      access_key: ${MINIO_ACCESS_KEY}
+      secret_key: ${MINIO_ACCESS_SECRET}
+      forcepathstyle: true
+  admin:
+    backend: s3
+    s3:
+      bucket: tempo-admin
+      endpoint: cdn.jemand771.net
+      region: us-east-1
+      access_key: ${MINIO_ACCESS_KEY}
+      secret_key: ${MINIO_ACCESS_SECRET}
+      forcepathstyle: true
+global:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio

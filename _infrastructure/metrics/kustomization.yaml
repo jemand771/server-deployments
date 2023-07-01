@@ -7,6 +7,7 @@ resources:
   - clnp-tunnel-key.yaml
   - grafana-oauth.yaml
   - loki.minio-secret.yaml
+  - tempo-minio-secret.yaml
   # TODO prometheus secret for minio job
   # TODO bring back custom dashboards
 helmCharts:
@@ -31,6 +32,12 @@ helmCharts:
     valuesInline:
       config:
         lokiAddress: http://loki-write:3100/loki/api/v1/push
+  - repo: https://grafana.github.io/helm-charts
+    name: tempo-distributed
+    version: 1.4.7
+    namespace: metrics
+    releaseName: tempo
+    valuesFile: tempo-values.yaml
 patches:
   - path: patch-namespace.yaml
     target:
