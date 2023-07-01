@@ -24,6 +24,18 @@ ingester:
   extraEnvFrom:
     - secretRef:
         name: loki-minio
+distributor:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
+compactor:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
 querier:
   extraArgs:
     - -config.expand-env=true
