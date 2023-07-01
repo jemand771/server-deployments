@@ -8,3 +8,4 @@
 # I'm keeping the yaml files in case I ever wanna try again
 /pterodactyl
 /_infrastructure/ingress-nginx
+charts
