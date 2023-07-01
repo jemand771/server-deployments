@@ -29,7 +29,7 @@ spec:
             - name: REDIS_HOST
               value: redis-master
             - name: OTEL_ENDPOINT
-              value: tempo-distributor.metrics.svc.cluster.local
+              value: http://tempo-distributor.metrics.svc.cluster.local:4318
           ports:
             - containerPort: 80
               name: web
