@@ -31,6 +31,7 @@ ingester:
     - secretRef:
         name: tempo-minio
 distributor:
+  affinity: {}
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
