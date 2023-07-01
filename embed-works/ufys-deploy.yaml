@@ -28,6 +28,8 @@ spec:
               value: cdn.jemand771.net
             - name: MINIO_BUCKET
               value: ufys
+            - name: OTEL_ENDPOINT
+              value: tempo-distributor.metrics.svc.cluster.local
           envFrom:
             - secretRef:
                 name: minio-secret

@@ -28,6 +28,8 @@ spec:
               value: embed.works,ew.771.blue
             - name: REDIS_HOST
               value: redis-master
+            - name: OTEL_ENDPOINT
+              value: tempo-distributor.metrics.svc.cluster.local
           ports:
             - containerPort: 80
               name: web
