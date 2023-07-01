@@ -62,6 +62,11 @@ patches:
       version: v1
       kind: StatefulSet
       name: loki-write
+  - path: patch-poddisruptionbudget-apiversion.yaml
+    target:
+      group: policy
+      version: v1beta1
+      kind: PodDisruptionBudget
 # NOTE I had to increase the inotify limit in order to get promtail to work:
 # sysctl fs.inotify.max_user_instances=8192
 # see https://github.com/grafana/loki/issues/4740
