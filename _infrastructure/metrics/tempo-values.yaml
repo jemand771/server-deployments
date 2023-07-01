@@ -17,7 +17,20 @@ storage:
       access_key: ${MINIO_ACCESS_KEY}
       secret_key: ${MINIO_ACCESS_SECRET}
       forcepathstyle: true
-global:
+# the docs say I can use global.extraEnvFrom, but that didn't work for me :(
+ingester:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
+querier:
+  extraArgs:
+    - -config.expand-env=true
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
+queryFrontend:
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
