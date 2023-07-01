@@ -23,28 +23,28 @@ ingester:
     - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
-        name: loki-minio
+        name: tempo-minio
 distributor:
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
-        name: loki-minio
+        name: tempo-minio
 compactor:
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
-        name: loki-minio
+        name: tempo-minio
 querier:
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
-        name: loki-minio
+        name: tempo-minio
 queryFrontend:
   extraArgs:
     - -config.expand-env=true
   extraEnvFrom:
     - secretRef:
-        name: loki-minio
+        name: tempo-minio
