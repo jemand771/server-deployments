@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aaas
+  labels:
+    app: embed.works
+    component: aaas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: embed.works
+      component: aaas
+  template:
+    metadata:
+      labels:
+        app: embed.works
+        component: aaas
+    spec:
+      containers:
+        - name: aaas
+          image: ghcr.io/nycodeghg/aaas
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: web

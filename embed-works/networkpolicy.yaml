@@ -29,7 +29,18 @@ spec:
         - port: 53
           protocol: UDP
     - to:
-        - podSelector:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: embed-works
+          podSelector:
+            matchLabels:
+              app: embed.works
+              component: aaas
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: metrics
+          podSelector:
             matchLabels:
               app.kubernetes.io/name: tempo
               app.kubernetes.io/component: distributor

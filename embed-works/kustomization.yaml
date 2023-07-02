@@ -7,6 +7,8 @@ resources:
   - ew-deploy.yaml
   - ew-svc.yaml
   - networkpolicy.yaml
+  - aaas-deploy.yaml
+  - aaas-svc.yaml
 #  - ew-ingress.yaml
 helmCharts:
   - name: ew-ingress

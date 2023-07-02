@@ -30,6 +30,8 @@ spec:
               value: ufys
             - name: OTEL_ENDPOINT
               value: http://tempo-distributor.metrics.svc.cluster.local:4318/v1/traces
+            - name: AAAS_ENDPOINT
+              value: http://aaas/render
           envFrom:
             - secretRef:
                 name: minio-secret
