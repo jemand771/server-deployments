@@ -23,6 +23,8 @@ traces:
       enabled: true
     grpc:
       enabled: true
+global_overrides:
+  max_bytes_per_trace: 50000000  # 50MB, default is 5MB
 # the docs say I can use global.extraEnvFrom, but that didn't work for me :(
 ingester:
   extraArgs:
