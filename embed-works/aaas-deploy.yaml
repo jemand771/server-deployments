@@ -24,3 +24,12 @@ spec:
           ports:
             - containerPort: 8080
               name: web
+          env:
+            - name: RUST_LOG
+              value: info
+            - name: ENABLE_OTLP
+              value: "true"
+            - name: OTEL_SERVICE_NAME
+              value: embed-works.aaas
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://tempo-distributor.metrics.svc.cluster.local:4317
