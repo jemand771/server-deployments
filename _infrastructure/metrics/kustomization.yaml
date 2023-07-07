@@ -8,6 +8,7 @@ resources:
   - grafana-oauth.yaml
   - loki.minio-secret.yaml
   - tempo-minio-secret.yaml
+  - loki-servicemonitor.yaml
   # TODO prometheus secret for minio job
   # TODO bring back custom dashboards
 helmCharts:

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: loki
+  namespace: metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - metrics
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: loki
+  endpoints:
+    - port: http-metrics
+      relabelings:
+        - sourceLabels:
+            - job
+          replacement: metrics/$1
+          targetLabel: job
