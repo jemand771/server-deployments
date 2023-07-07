@@ -13,7 +13,8 @@ spec:
   endpoints:
     - port: http-metrics
       relabelings:
-        - sourceLabels:
+        - action: replace
+          sourceLabels:
             - job
           replacement: metrics/$1
           targetLabel: job
