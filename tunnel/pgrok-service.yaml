@@ -15,11 +15,13 @@ kind: Service
 metadata:
   name: pgrok
   namespace: tunnel
+  annotations:
+    metallb.universe.tf/allow-shared-ip: ipv4s-are-expensive
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: tunnel
-      port: 4443
-      nodePort: 32443
+      port: 32443
+      targetPort: tunnel
   selector:
     app: pgrok
