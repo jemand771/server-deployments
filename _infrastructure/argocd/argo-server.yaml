@@ -9747,6 +9747,9 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-cmd-params-cm
   namespace: argocd
+data:
+  # manual edit here
+  controller.log.level: warn
 ---
 apiVersion: v1
 kind: ConfigMap
