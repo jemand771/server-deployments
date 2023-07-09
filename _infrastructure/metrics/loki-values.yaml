@@ -12,6 +12,8 @@ loki:
       accessKeyId: ${MINIO_ACCESS_KEY}
       s3ForcePathStyle: true
       insecure: false
+  commonConfig:
+    log_level: warn
   # TODO auth? technically don't need it, but would be cool
   auth_enabled: false
 backend:
