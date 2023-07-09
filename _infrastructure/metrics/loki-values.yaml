@@ -17,24 +17,34 @@ loki:
 backend:
   extraArgs:
     - -config.expand-env=true
-  affinity: {}
+  affinity: { }
   extraEnvFrom:
     - secretRef:
         name: loki-minio
 read:
   extraArgs:
     - -config.expand-env=true
-  affinity: {}
+  affinity: { }
   extraEnvFrom:
     - secretRef:
         name: loki-minio
 write:
   extraArgs:
     - -config.expand-env=true
-  affinity: {}
+  affinity: { }
   extraEnvFrom:
     - secretRef:
         name: loki-minio
+tableManager:
+  enabled: true
+  extraArgs:
+    - -config.expand-env=true
+  affinity: { }
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
+  retention_deletes_enabled: true
+  retention_period: 168h
 monitoring:
   selfMonitoring:
     enabled: false
