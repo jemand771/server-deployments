@@ -1,6 +1,6 @@
 kubeControllerManager:
   endpoints:
-    - 10.10.10.31
+    - 10.0.3.100
   service:
     port: 10257
     targetPort: 10257
@@ -9,7 +9,7 @@ kubeControllerManager:
     insecureSkipVerify: true
 kubeScheduler:
   endpoints:
-    - 10.10.10.31
+    - 10.0.3.100
   service:
     port: 10259
     targetPort: 10259
@@ -18,7 +18,7 @@ kubeScheduler:
     insecureSkipVerify: true
 kubeProxy:
   endpoints:
-    - 10.10.10.31
+    - 10.0.3.100
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
