@@ -16,6 +16,8 @@ kubeScheduler:
   serviceMonitor:
     https: true
     insecureSkipVerify: true
+kubeProxy:
+  enabled: false
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
