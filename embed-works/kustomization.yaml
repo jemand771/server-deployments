@@ -1,7 +1,7 @@
 namespace: embed-works
 resources:
   - ns.yaml
-  - minio-secret.yaml
+  - ufys-secret.yaml
   - ufys-deploy.yaml
   - ufys-svc.yaml
   - ew-deploy.yaml

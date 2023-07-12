@@ -34,7 +34,7 @@ spec:
               value: http://aaas/render
           envFrom:
             - secretRef:
-                name: minio-secret
+                name: ufys-secret
           ports:
             - containerPort: 80
               name: web
