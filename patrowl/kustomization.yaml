@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: patrowl
+resources:
+  - ns.yaml
+  - patrowl-secret.yaml
+  - manager.yaml
+helmCharts:
+  - repo: https://charts.bitnami.com/bitnami
+    name: postgresql
+    version: 12.1.2
+    namespace: patrowl
+    releaseName: patrowl
+    valuesInline:
+      auth:
+        existingSecret: patrowl-secret
+        secretKeys:
+          adminPasswordKey: POSTGRES_ADMIN_PASSWORD
+          userPasswordKey: POSTGRES_USER_PASSWORD
+          replicationPasswordKey: POSTGRES_REPLICATION_PASSWORD
+        username: patrowl
+        database: patrowl
+  - repo: https://charts.bitnami.com/bitnami
+    name: rabbitmq
+    version: 12.0.7
+    namespace: patrowl
+    releaseName: patrowl
+    valuesInline:
+      auth:
+        existingPasswordSecret: patrowl-secret
+        existingErlangSecret: patrowl-secret

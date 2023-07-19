@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manager
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: patrowl
+      app.kubernetes.io/component: manager
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: patrowl
+        app.kubernetes.io/component: manager
+    spec:
+      containers:
+        - name: manager
+          image: patrowl/patrowl-manager-community-edition:1.6.26
+          ports:
+            - name: web
+              containerPort: 8003
+          env:
+            # why are we still here, just to suffer
+            # https://github.com/Patrowl/PatrowlManager/issues/87
+            - name: DEBUG
+              value: "true"
+            - name: POSTGRES_HOST
+              value: patrowl-postgresql
+            - name: POSTGRES_DBNAME
+              value: patrowl
+            - name: POSTGRES_USER
+              value: patrowl
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: patrowl-secret
+                  key: POSTGRES_USER_PASSWORD
+            - name: RABBITMQ_HOST
+              value: patrowl-rabbitmq
+            - name: RABBIT_ENV_USER
+              value: user
+            - name: RABBIT_ENV_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: patrowl-secret
+                  key: rabbitmq-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patrowl
+spec:
+  selector:
+    app.kubernetes.io/name: patrowl
+    app.kubernetes.io/component: manager
+  ports:
+    - port: 80
+      name: web
+      targetPort: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: patrowl
+spec:
+  rules:
+    - host: patrowl.jemand771.net
+      http:
+        paths:
+          - backend:
+              service:
+                name: patrowl
+                port:
+                  name: web
+            pathType: Prefix
+            path: /
