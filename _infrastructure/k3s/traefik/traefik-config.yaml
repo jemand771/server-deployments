@@ -11,7 +11,7 @@ spec:
       web:
         redirectTo: websecure
       websecure:
-        http3: {}
+        http3: { }
         forwardedHeaders:
           trustedIPs:
             - 0.0.0.0/0
@@ -55,6 +55,12 @@ spec:
         addEntryPointsLabels: true
         addRoutersLabels: true
         addServicesLabels: true
+        service:
+          enabled: true
+        serviceMonitor:
+          namespace: kube-system
+          namespaceSelector: { }
+          honorLabels: true
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.771.blue`)
