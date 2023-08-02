@@ -37,7 +37,9 @@ prometheus:
       - job_name: "yui_mood_tracker"
         static_configs:
           - targets:
-              - https://mood.zptr.cc/api/metrics?users=allie,hazel,yui
+              - mood.zptr.cc
+        scheme: https
+        metrics_path: /api/metrics?users=allie,hazel,yui
   ingress:
     enabled: true
     annotations:
