@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: smp5
-          image: itzg/minecraft-server:2022.16.0
+          image: itzg/minecraft-server:2023.8.3
           imagePullPolicy: Always
           stdin: true
           tty: true
