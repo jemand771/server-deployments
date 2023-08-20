@@ -196,7 +196,7 @@ data:
   vt_datapacks: |
     {
       "type": "datapacks",
-      "version": "1.19",
+      "version": "1.20",
       "packs": {
         "survival": [
           "armor statues",
@@ -229,7 +229,7 @@ data:
   vt_resourcepacks: |
     {
       "type": "resourcepacks",
-      "version": "1.19",
+      "version": "1.20",
       "packs": {
       }
     }
@@ -237,7 +237,7 @@ data:
   vt_craftingtweaks: |
     {
       "type": "craftingtweaks",
-      "version": "1.19",
+      "version": "1.20",
       "packs": {
         "quality-of-life": [
           "back to blocks",
