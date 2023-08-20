@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: smp5
-          image: itzg/minecraft-server:2022.16.0
+          image: itzg/minecraft-server:2023.8.3
           imagePullPolicy: Always
           stdin: true
           tty: true
@@ -36,7 +36,7 @@ spec:
             - name: TYPE
               value: fabric
             - name: VERSION
-              value: "1.19.2"
+              value: "1.20.1"
             - name: MEMORY
               value: 12G
             - name: OVERRIDE_SERVER_PROPERTIES
