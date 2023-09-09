@@ -1,0 +1,6 @@
+namespace: catzip
+resources:
+  - ns.yaml
+  - deployment.yaml
+  - svc.yaml
+  - ingress.yaml

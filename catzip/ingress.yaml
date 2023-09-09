@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: catzip
+  annotations:
+    cert-manager.io/cluster-issuer: cf-issuer
+spec:
+  tls:
+    - hosts:
+        - malware.zip
+  rules:
+    - host: malware.zip
+      http:
+        paths:
+          - backend:
+              service:
+                name: catzip
+                port:
+                  name: web
+            path: /
+            pathType: Prefix

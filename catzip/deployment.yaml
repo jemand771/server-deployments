@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catzip
+  labels:
+    app: catzip
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catzip
+  template:
+    metadata:
+      labels:
+        app: catzip
+    spec:
+      containers:
+        - name: catzip
+          image: ghcr.io/jemand771/catzip:br-main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: web

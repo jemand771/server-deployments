@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: catzip
+spec:
+  selector:
+    app: catzip
+  ports:
+    - port: 80
+      name: web
+      targetPort: web
