@@ -27,7 +27,7 @@ spec:
           image: immanuelfodor/kube-karp:1.0.3
           env:
             - name: KARP_VIRTUAL_IP
-              value: 10.0.3.100
+              value: 10.6.3.100
             - name: KARP_SUBNET
               value: "24"
             - name: KARP_SERVER_ID
