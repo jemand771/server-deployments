@@ -38,7 +38,7 @@ spec:
             - mountPath: /var/run/fail2ban
               name: run
         - name: exporter
-          image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:0.6.0
+          image: registry.gitlab.com/hectorjsmith/fail2ban-prometheus-exporter:0.10.1
           ports:
             - containerPort: 9191
           volumeMounts:
