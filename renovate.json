@@ -10,5 +10,7 @@
   },
   "ignoreDeps": [
     "ew-ingress"
-  ]
+  ],
+  "prHourlyLimit": 10,
+  "prConcurrentLimit": 100
 }
