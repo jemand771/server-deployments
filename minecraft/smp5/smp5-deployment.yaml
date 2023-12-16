@@ -60,6 +60,7 @@ spec:
                 quinnaco1
                 T0nimel0ni
                 ShadyBanjo4321
+                sora_copper
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: ENFORCE_WHITELIST
