@@ -47,6 +47,16 @@ tableManager:
         name: loki-minio
   retention_deletes_enabled: true
   retention_period: 168h
+compactor:
+  enabled: true
+  extraArgs:
+    - -config.expand-env=true
+  affinity: { }
+  extraEnvFrom:
+    - secretRef:
+        name: loki-minio
+  retention_deletes_enabled: true
+  retention_period: 168h
 monitoring:
   selfMonitoring:
     enabled: false
