@@ -16,6 +16,10 @@ loki:
     log_level: warn
   # TODO auth? technically don't need it, but would be cool
   auth_enabled: false
+  config:
+    compactor:
+      retention_deletes_enabled: true
+      retention_period: 168h
 backend:
   extraArgs:
     - -config.expand-env=true
@@ -38,16 +42,6 @@ write:
     - secretRef:
         name: loki-minio
 tableManager:
-  enabled: true
-  extraArgs:
-    - -config.expand-env=true
-  affinity: { }
-  extraEnvFrom:
-    - secretRef:
-        name: loki-minio
-  retention_deletes_enabled: true
-  retention_period: 168h
-compactor:
   enabled: true
   extraArgs:
     - -config.expand-env=true
