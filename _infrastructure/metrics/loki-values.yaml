@@ -17,7 +17,8 @@ loki:
   # TODO auth? technically don't need it, but would be cool
   auth_enabled: false
   compactor:
-    retention_deletes_enabled: true
+    retention_enabled: true
+  limits_config:
     retention_period: 168h
 backend:
   extraArgs:
