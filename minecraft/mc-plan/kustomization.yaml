@@ -7,7 +7,7 @@ resources:
 helmCharts:
   - repo: https://charts.bitnami.com/bitnami
     name: mariadb
-    version: 12.2.5
+    version: 15.2.2
     namespace: mc-plan
     releaseName: mariadb
     valuesInline:
