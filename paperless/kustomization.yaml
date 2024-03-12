@@ -14,7 +14,7 @@ helmCharts:
     valuesFile: redis-values.yaml
   - name: postgresql
     repo: https://charts.bitnami.com/bitnami
-    version: 12.1.2
+    version: 14.3.3
     releaseName: postgresql
     namespace: paperless
     valuesFile: postgres-values.yaml
