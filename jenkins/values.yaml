@@ -1,0 +1,38 @@
+      controller:
+        testEnabled: false
+        ingress:
+          enabled: true
+          hostName: jenkins.jemand771.net
+          tls:
+            - secretName: jenkins.jemand771.net
+              hosts:
+                - jenkins.jemand771.net
+        additionalPlugins:
+          - oic-auth:4.225.v03326773b_44b_
+          - matrix-auth:3.2.2
+        existingSecret: controller-secret
+        JCasC:
+          # TODO secrets from secret
+          # language=yaml
+          securityRealm: |
+            oic:
+              wellKnownOpenIDConfigurationUrl: "https://sso.jemand771.net/application/o/jenkins/.well-known/openid-configuration"
+              clientId: ${OIDC_CLIENT_ID}
+              clientSecret: ${OIDC_CLIENT_SECRET}
+              userNameField: "preferred_username"
+              emailFieldName: "email"
+              fullNameFieldName: "name"
+              groupsFieldName: "groups"
+          # language=yaml
+          authorizationStrategy: |
+            # example: https://github.com/jenkinsci/matrix-auth-plugin/blob/a9c5bdc7d8b7acf553884611e0ae356e3f0eb71a/src/test/resources/org/jenkinsci/plugins/matrixauth/integrations/casc/configuration-as-code-v3.yml
+            projectMatrix:
+              entries:
+                - user:
+                    name: anonymous
+                    permissions:
+                      - Overall/Read
+                - group:
+                    name: jenkins-admin
+                    permissions:
+                      - Overall/Administer

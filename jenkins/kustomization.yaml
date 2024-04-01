@@ -1,0 +1,10 @@
+resources:
+  - ns.yaml
+  - controller-secret.yaml
+helmCharts:
+  - name: jenkins
+    repo: https://charts.jenkins.io
+    version: 5.1.4
+    releaseName: jenkins
+    namespace: jenkins
+    valuesFile: values.yaml
