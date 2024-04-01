@@ -19,10 +19,10 @@
               wellKnownOpenIDConfigurationUrl: "https://sso.jemand771.net/application/o/jenkins/.well-known/openid-configuration"
               clientId: ${OIDC_CLIENT_ID}
               clientSecret: ${OIDC_CLIENT_SECRET}
-              userNameField: "preferred_username"
-              emailFieldName: "email"
-              fullNameFieldName: "name"
-              groupsFieldName: "groups"
+              userNameField: preferred_username
+              emailFieldName: email
+              fullNameFieldName: name
+              groupsFieldName: groups
           # language=yaml
           authorizationStrategy: |
             # example: https://github.com/jenkinsci/matrix-auth-plugin/blob/a9c5bdc7d8b7acf553884611e0ae356e3f0eb71a/src/test/resources/org/jenkinsci/plugins/matrixauth/integrations/casc/configuration-as-code-v3.yml
