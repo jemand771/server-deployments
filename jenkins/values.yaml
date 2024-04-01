@@ -19,6 +19,7 @@
               wellKnownOpenIDConfigurationUrl: "https://sso.jemand771.net/application/o/jenkins/.well-known/openid-configuration"
               clientId: ${OIDC_CLIENT_ID}
               clientSecret: ${OIDC_CLIENT_SECRET}
+              logoutFromOpenidProvider: true
               userNameField: preferred_username
               emailFieldName: email
               fullNameFieldName: name
