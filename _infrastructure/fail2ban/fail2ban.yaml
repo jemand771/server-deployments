@@ -21,7 +21,7 @@ spec:
       hostNetwork: true
       containers:
         - name: fail2ban
-          image: ghcr.io/crazy-max/fail2ban:0.11.2
+          image: ghcr.io/crazy-max/fail2ban:1.1.0
           securityContext:
             capabilities:
               add:
