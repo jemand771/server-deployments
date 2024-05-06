@@ -21,7 +21,7 @@ helmCharts:
     valuesFile: kps-values.yaml
   - repo: https://grafana.github.io/helm-charts
     name: loki
-    version: 5.8.7
+    version: 5.48.0
     namespace: metrics
     releaseName: loki
     valuesFile: loki-values.yaml
