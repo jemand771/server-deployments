@@ -20,6 +20,7 @@ spec:
         - port: 443
         - port: 53
           protocol: UDP
+        - port: 8100
     - to:
         - namespaceSelector: { }
           podSelector:
