@@ -25,7 +25,7 @@ helmCharts:
           - youtube
   - name: redis
     repo: https://charts.bitnami.com/bitnami
-    version: 17.3.11
+    version: 19.6.4
     releaseName: redis
     namespace: grindstone-stats
     valuesInline:
