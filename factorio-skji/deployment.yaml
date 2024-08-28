@@ -48,7 +48,7 @@ spec:
               name: data
       containers:
         - name: factorio
-          image: factoriotools/factorio:1.1.61
+          image: factoriotools/factorio:1.1.110
           ports:
             - containerPort: 34197
               name: factorio
