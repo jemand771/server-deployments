@@ -15,7 +15,7 @@ helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
     releaseName: kps
-    version: 44.2.1
+    version: 63.1.0
     namespace: metrics
     includeCRDs: true
     valuesFile: kps-values.yaml
