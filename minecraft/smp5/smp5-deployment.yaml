@@ -102,8 +102,10 @@ spec:
             #   value: "true"
             - name: STOP_SERVER_ANNOUNCE_DELAY
               value: "30"
-            - name: VANILLATWEAKS_FILE
-              value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
+            # - name: VANILLATWEAKS_FILE
+            #   value: /data/vt_datapacks.json,/data/vt_craftingtweaks.json
+            - name: VANILLATWEAKS_SHARECODE
+              value: vyD2dl,tgZMkd
             - name: SPAWN_PROTECTION
               value: "0"
             - name: MAX_TICK_TIME
