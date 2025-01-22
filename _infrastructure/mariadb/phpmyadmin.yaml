@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin/phpmyadmin:5.1.1
+          image: phpmyadmin/phpmyadmin:5.2.2
           env:
             - name: PMA_HOST
               value: mariadb
