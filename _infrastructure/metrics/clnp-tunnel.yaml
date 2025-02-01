@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tunnel
-          image: nowsci/sshtunnel:20230601035201
+          image: nowsci/sshtunnel:20250201065204
           env:
             - name: TUNNEL_HOST
               value: ssh_forwarder@clnp.eu
