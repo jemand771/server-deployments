@@ -223,7 +223,7 @@ spec:
               key: GITHUB_APP_PRIVATE_KEY
               name: controller-manager
               optional: true
-        image: ghcr.io/int128/argocd-commenter:v1.8.0
+        image: ghcr.io/int128/argocd-commenter:v1.19.1
         livenessProbe:
           httpGet:
             path: /healthz
