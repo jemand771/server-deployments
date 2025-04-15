@@ -22,7 +22,7 @@ helmCharts:
         database: patrowl
   - repo: https://charts.bitnami.com/bitnami
     name: rabbitmq
-    version: 12.0.7
+    version: 15.5.3
     namespace: patrowl
     releaseName: patrowl
     valuesInline:
