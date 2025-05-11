@@ -67,7 +67,7 @@ spec:
     spec:
       serviceAccountName: mc-router
       containers:
-      - image: itzg/mc-router:1.17.1
+      - image: itzg/mc-router:1.31.0
         name: mc-router
         args: ["--in-kube-cluster"]
         ports:
