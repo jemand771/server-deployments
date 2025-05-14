@@ -4,7 +4,7 @@ namespace: external-dns
 resources:
   - ns.yaml
   - cloudflare-token.yaml
-  - https://github.com/kubernetes-sigs/external-dns//kustomize?ref=v0.13.4
+  - https://github.com/kubernetes-sigs/external-dns//kustomize?ref=v0.17.0
 patches:
   - target:
       group: apps
