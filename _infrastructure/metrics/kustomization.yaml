@@ -27,7 +27,7 @@ helmCharts:
     valuesFile: loki-values.yaml
   - repo: https://grafana.github.io/helm-charts
     name: promtail
-    version: 6.11.5
+    version: 6.17.0
     namespace: metrics
     releaseName: promtail
     valuesInline:
