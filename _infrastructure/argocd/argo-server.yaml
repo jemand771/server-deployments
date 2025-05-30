@@ -10242,7 +10242,7 @@ spec:
         - ""
         - --appendonly
         - "no"
-        image: redis:7.0.5-alpine
+        image: redis:8.0.2-alpine
         imagePullPolicy: Always
         name: redis
         ports:
