@@ -29,7 +29,7 @@ spec:
               name: config
       containers:
         - name: warpgate
-          image: ghcr.io/warp-tech/warpgate:0.13.2
+          image: ghcr.io/warp-tech/warpgate:0.14.1
           ports:
             - containerPort: 22
               name: ssh
