@@ -8,7 +8,7 @@ resources:
 helmCharts:
   - repo: https://charts.bitnami.com/bitnami
     name: postgresql
-    version: 12.1.2
+    version: 16.7.11
     namespace: patrowl
     releaseName: patrowl
     valuesInline:
