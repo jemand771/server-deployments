@@ -8,7 +8,7 @@ resources:
 helmCharts:
   - name: redis
     repo: https://charts.bitnami.com/bitnami
-    version: 17.3.11
+    version: 21.2.3
     releaseName: redis
     namespace: paperless
     valuesFile: redis-values.yaml
