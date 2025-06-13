@@ -4,7 +4,7 @@ resources:
 helmCharts:
   - name: jenkins
     repo: https://charts.jenkins.io
-    version: 5.1.4
+    version: 5.8.58
     releaseName: jenkins
     namespace: jenkins
     valuesFile: values.yaml
