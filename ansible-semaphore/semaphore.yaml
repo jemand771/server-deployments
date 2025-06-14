@@ -22,7 +22,7 @@ spec:
             value: "1"
       containers:
         - name: semaphore
-          image: semaphoreui/semaphore:v2.8.77
+          image: semaphoreui/semaphore:v2.15.0
           ports:
             - containerPort: 3000
               name: web
