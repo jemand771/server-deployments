@@ -35,7 +35,7 @@ helmCharts:
         lokiAddress: http://loki-write:3100/loki/api/v1/push
   - repo: https://grafana.github.io/helm-charts
     name: tempo-distributed
-    version: 1.4.7
+    version: 1.42.1
     namespace: metrics
     releaseName: tempo
     valuesFile: tempo-values.yaml
