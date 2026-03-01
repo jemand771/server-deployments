@@ -20,7 +20,7 @@ spec:
     spec:
       initContainers:
         - name: import-config
-          image: ubuntu:22.04
+          image: ubuntu:24.04
           command:
             - cp
             - -r
@@ -32,7 +32,7 @@ spec:
             - mountPath: /config
               name: config
         - name: set-rconpw
-          image: ubuntu:22.04
+          image: ubuntu:24.04
           command:
             - /bin/bash
             - -c
